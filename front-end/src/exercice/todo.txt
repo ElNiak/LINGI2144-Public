@@ -1,0 +1,10 @@
+- TP1:
+    * thread race conditions: What happens if you remove the asterisk on line 6 of the code (change from *i = 0; to i = 0;)? Can you explain why this works?
+
+- TP2:
+    * NULL Pointers
+
+- TP3:
+    * Self Modifying Code
+
+

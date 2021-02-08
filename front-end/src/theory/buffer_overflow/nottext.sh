@@ -1,0 +1,6 @@
+section .text
+...
+movabs rsi,0x6000d8 #(this is here that hello world is uploaded)
+...
+section .data
+hello_world: db ‘hello world’,0xa

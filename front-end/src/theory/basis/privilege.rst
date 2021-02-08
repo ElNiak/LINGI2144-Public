@@ -1,0 +1,183 @@
+Basic attacks/defences
+======================
+
+
+Privileges escalation
+---------------------
+
+Main objective of a hacker is to obtain maximum amount of privileges,
+this includes, e.g., the possibility to open a shell with root
+privileges. With this, you can break any security attribute!
+
++------------------------------------------------------------------+--------------------------------+
+| In this first attack :                                           | Why ?                          |
++==================================================================+================================+
+| Assume that we have an access to the network                     | Read/Write any sensitive file  |
+| (and some computer)                                              |                                |
++------------------------------------------------------------------+--------------------------------+
+| Assume that we do not have root privileges                       | Persist easily between reboots |
++------------------------------------------------------------------+--------------------------------+
+| :math:`\Rightarrow` Obtain a shell with root                     | Insert a permanent backdoor    |
+| privileges or root information in case shell cannot be obtained. |                                |
++------------------------------------------------------------------+--------------------------------+
+
+The ``sudo`` case (linux)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``sudo`` allows a user to execute a program in the name of another
+   user
+
+-  | ``sudo`` configuration is defined in and can be modified
+   | Example : Write ``axel ALL = (root) NOPASSWD /home/axel``. This
+     will allow user axel to execute any program in his home directory
+     with root privileges
+
+-  How can this be exploited? Becoming root is only an opportunity to
+   launch an attack and is not something bad itself. E.g
+   ``sudo system``.
+
+-  **Protection**: Limits the content of ``/etc/sudousers``
+
+The ``system()`` case (C)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``system()`` takes as argument a shell command that it executes
+
+-  | Weakness : Allows us to execute multiple commands
+   | Example : ``system("bin/sh;ls")``
+
+-  **Protection**: Do not allow programs using ``system()`` rather use
+   ``execenv()``
+
+Hack me I
+~~~~~~~~~
+
+Consider program ``test`` **owned by axel** in axel’s directory (takes a
+file as input)
+
+.. literalinclude:: hackmeI.c
+   :language: c
+
+-  ``./test "coucou;/bin/sh"`` will print content of file coucou and
+   then open a shell. The owner of this shell is the one who executes
+   the program, i.e., axel.
+
+-  ``sudo ./test coucou;/bin/sh`` will obtain a shell with root
+   privileges
+
+If we don’t have any source code we can still do somethings in :
+
+-  ``(ALL) NOPASSWD: /user/bin/python`` permits any user to launch
+   python (owned by root) without password
+
+-  ``sudo python -c 'import pty;pty.spawn ("/bin/bash");'`` gives a
+   shell with root privileges
+
+Limits the content of ``/etc/sudousers`` and do not allow programs using
+system !
+
+Recap on file
+~~~~~~~~~~~~~
+
+| Owner of file can be obtained with ``ls -ld <nameoffile>``. In linux,
+  each file is attached to a set of rights: read(``r``), write(``w``) and
+  execute(``x``). Those rights depends on the type of user: ``owner``, ``group``, or
+  ``other users`` and can be modified with command (e.g :
+  ``chmod rwx --- --- file``)
+
+.. centered:: ``chmod <owner> <group> <AllOtherUser> <file>``
+
+| It may be necessary to get more privileges at a specific moment of
+  time.
+
+| Example :
+
+-  ``/usr/bin/passwd`` (aims at user account details) is owned by root
+   but it can be executed by any user of the system
+
+-  It allows us to modify user’s password and hence ``/etc/shadow``
+   (aims at user’s password details) owned by root
+
+-  For doing so, it requires to have the privileges of root when writing
+   into shadow
+
+-  This is done by giving the ``SET-UID`` flag(``s``) instead of execution
+   flag(``x``). Principle: If a file has ``SET-UID`` flag, then it **can be
+   executed with privileges of the one who owns it**, it allows to run
+   an executable with the permissions of the executable’s owner. Can be
+   done with ``sudo chmod 4755 file`` :math:`\rightarrow`
+   ``ls -al file //-rw(s)r-xr-x``
+
+-  The difference with ``sudo`` is that it executes a command as *another
+   user* but only if the original user is *allowed* to do it. (the user
+   must be allowed previously in ``/etc/sudoers``).
+
+There are also the :
+
+#. ``STICKY BIT`` flag(``+t``): It was first introduced to minimize the time
+   delay introduced every time when a program is executed. The OS
+   checked that if sticky bit on an executable is ON, then the text
+   segment of the executable was kept in the swap space. This made it
+   easy to load back the executable into RAM when the program was run
+   again thus minimizing the time delay. Usually used on directory.
+
+#. ``SET-GID`` flag(``s`` in group) when executed, instead of running with
+   the privileges of the group of the user who started it, runs with
+   those of the group which owns the file: in other words, the group ID
+   of the process will be the same of that of the file. Can also be used
+   on directories, alters the standard behavior so that the group of the
+   files created inside said directory, will not be that of the user who
+   created them, but that of the parent directory itself.
+
+All of these can easily be spotted.
+
+Hack me II
+~~~~~~~~~~
+
+Consider program ``test`` **owned by root** and executed by axel.
+
+.. literalinclude:: hackmeII.c
+   :language: c
+
+-  ``./test coucou;/bin/sh`` will print content of file coucou and then
+   open a shell
+
+-  If test is owned by root and has ``SET-UID``, then we obtain a shell
+   owned by root even without sudo and even if you are not root user !
+
+-  In fact; **NO**. The shell that execute ``system()`` may ignore the
+   ``SET-UID`` option. May be still use full in the future.
+
+Hack me - Leakage
+~~~~~~~~~~~~~~~~~
+
+Sometimes there is no ``system()`` command and we may even loose the
+``SET-UID`` but it can be still vulnerable.
+
+.. literalinclude:: leak.c
+   :language: c
+
+Assume file ``hifile`` belongs to root and contain string hello :
+
+.. literalinclude:: leak.sh
+   :language: bash
+
+More? Windows?
+~~~~~~~~~~~~~~
+
++----------------------------------------------+---------------------------------------+
+| Other attacks:                               | The case of windows:                  |
++==============================================+=======================================+
+| John the Ripper                              | Admin by default                      |
++----------------------------------------------+---------------------------------------+
+| Cron jobs (periodics task on computer)       | Cron / at                             |
++----------------------------------------------+---------------------------------------+
+| Substitute ``path.`` and ask root to execute | Clear in registries or in some files  |
+|                                              | (unattended.xml)                      |
++----------------------------------------------+---------------------------------------+
+
+
+
+
+.. include:: integer_overflow.rst
+.. include:: concurrency.rst

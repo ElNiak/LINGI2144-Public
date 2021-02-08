@@ -1,0 +1,163 @@
+Format String
+**************
+
+
+Definition
+-----------
+
+In, e.g., C language , format string are strings that contains specific
+characters , called **conversion specifications** characters
+(``%d,%s,etc.``). Format string also exist in other language such as
+Python for example.
+
+Fortatted output functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Format strings are usually exploited by **formatted output functions**
+such as ``printf`` and derivatives (``fprintf, vprintf, sprint``,...).
+Formatted output functions consist of a format string and a variable
+number of arguments, usually one for each conversion specification of
+the format string.
+
+..  image:: image/24.PNG
+    :scale: 80%
+    :align: center
+
+-  ``fprintf()`` writes output to a **stream** based on the contents of
+   the format string. The stream, format string, and a variable list of
+   arguments are provided as arguments
+
+-  ``printf()`` is equivalent to ``fprintf()`` except that ``printf()``
+   assumes that the output stream is stdout
+
+-  ``sprintf()`` is equivalent to ``fprintf()`` except that the output
+   is written into an array rather than to a stream
+
+Formatted output functions are **variadic** functions. This means that
+they accept a variable number of arguments
+
+-  **User Contract:** #of calling conventions :math:`=` #of arguments
+   (:math:`=` Vulnerability)
+
+Variadic functions are implemented using either the UNIX System V or the
+ANSI C approach. Both approaches require that the contract between the
+developer and user of the variadic function not be violated by the user.
+But the architecture may allow you to violate this contract ... (no way
+to count). This should remind of the “memory management class.
+**Potential error** forget one argument linked to a convention call.
+
+Conversion specification
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are two main types of conversion specification:
+
+#. **Direct:**
+
+   -  Argument is transmitted as a *value*
+
+   -  ``%d``, expect an integer transmitted as a value
+
+   -  ``%u``, expect a natural transmitted as a value
+
+   -  ``%x``, expect an hexadecimal transmitted as a value
+
+    .. literalinclude:: direct.c
+        :language: c
+
+2. **Address based:**
+
+   -  Argument is transmitted as a *reference*
+
+   -  ``%s``, expect a pointer to a string
+
+   -  ``%n``, save number of chars printed before reaching ``%n``
+
+    .. literalinclude:: addbased.c
+        :language: c
+
+
+.. note:: ``%i$d`` **allows us to print argument number i.**
+.. note:: ``%Xd`` **generates an integer of size X.**
+
+Variadic functions on the stack
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. literalinclude:: varia.c
+    :language: c
+
+..  image:: image/25.PNG
+    :scale: 80%
+    :align: center
+
+.. literalinclude:: varia2.c
+    :language: c
+
+..  image:: image/26.PNG
+    :scale: 80%
+    :align: center
+
+Dynamic format string: a potential vulnerability
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+| A problem arises when a format string contains conversion specifications
+that are not matched with arguments. Mostly when the system **gives the
+control of the content** of the output function **to the user**. This is
+called a dynamic format string cannot be guessed by reading the code).
+
+| Let us first show how ``%x`` can help us to read anywhere on the stack
+and ``%n`` to write there.
+
+.. literalinclude:: dyna.c
+    :language: c
+
+-  ``./vuln yop`` :math:`\rightarrow` ``yop``
+
+-  ``./vuln %x%x%x%x%x`` :math:`\rightarrow`
+   ``ffc5b3f44005658b5c7f7d2bcb8``
+
+-  | ``./vuln  AAAA%x%x%x%x%x%x%x%x%x%x%x`` :math:`\rightarrow`
+   | ``AAAAffe1f3e2400566545c7f7d58cb8677f9a5ff7f4f110ffe1dd1411f7d5bdc841414141``,
+     41 :math:`=` A , 8th %x point to beginning of msg. Indeed, we went
+     to higher addresses in the stack and eventually met msg. We control
+     msg , and more generally anything higher in the stack, which may be
+     dangerous. :math:`\Rightarrow` ``%x`` allows to **read** on the
+     stack
+
+-  ``./vuln %s`` :math:`\rightarrow` ``Segmentation fault`` Tries to
+   print the string at address pointed by s. This address is likely to
+   not be defined but this could change if one could put an interesting
+   address on the vulnerable buffer, use ``%x`` to reach it and then
+   ``%s`` to display it
+
+-  ``./vuln 0xbffffe48%x%x%x%x%x%x%x%n`` :math:`\rightarrow` will save
+   66 at ``0xbffffe48``. We have 66 because 10 char for ``0xbffffe48``
+   and 8 char for each of the seven ``%x``. :math:`\Rightarrow` ``%n``
+   allows to **write** on the stack
+
+Example
+~~~~~~~
+
+.. literalinclude:: example.c
+    :language: c
+
+-  ``./vuln AAAA%x%x%x%x``
+
+.. literalinclude:: sol1.sh
+    :language: bash
+
+-  ``./vuln $(printf "\x08\x90\x55\x56")%x%x%x%n``
+
+.. literalinclude:: sol2.sh
+    :language: bash
+
+In case of a client/server:
+
+-  Vulnerability can be exploited to read to eventually rewrite
+   variables on server’s stack
+
+-  Vulnerability can be used to crash the system
+
+.. include:: with_shellcode.rst
+.. include:: prevention.rst
+.. include:: versus_bo.rst
+.. include:: vuln.rst

@@ -1,0 +1,1 @@
+git clone https://github.com/ElNiak/LINGI2144-Secured-System-Engineering-Manager.git manager

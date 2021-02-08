@@ -1,0 +1,62 @@
+Memory Safety
+-------------
+
+| There is often a gap between the semantic of the language and the one
+  of the machine on which it is executed. Allows us to step out of the
+  restrictions imposed by the programming language and access memory out
+  of context. In fact C is considered to be memory unsafe. This
+  weakness/vulnerability is the root for many exploits (crash, leakage,
+  ...). Enforcing memory safety has a (potentially high) complexity
+  cost.
+
+| To avoid the above mention exploits/vulnerabilities, a definition of
+  memory safety is required:
+
+#. | The SoK paper proposes : “A program execution is memory safe so
+     long as memory access error does not occur”.
+   | This is not a definition, but rather a consequence of a potential
+     definition (what is an error?)
+
+#. Prof Mathias Payers proposes a definition based on the concept of
+   “runtime”: “Memory safety is a property that ensures that all memory
+   accesses adhere to the semantics defined by the source programming
+   language." :math:`=` A contract is thus passed between user and
+   compiler.
+   Payer: "The gap between the operational semantics of the programming
+   language and the underlying instructions provided by the hardware
+   allow an attacker to step out of the restrictions imposed by the
+   programming language and access memory out of context.”
+
+Example : By definition of the semantics of C language, pointer
+deference have to stay within bounds of their pointer’s valid objects.
+However, if the outside bound memory location is available, the machine
+on which the program is executed may accept it.
+
+-  **Conclusion:** memory safety is a general property that should be
+   defined at runtime. A program is memory safe if all of its executions
+   are safe
+
+Conditions to break memory safety
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Memory access errors can be split into two classes:
+
+#. | Those where a pointer become “dangling”
+   | **Temporal memory safety**
+
+   -  All memory dereferences are valid at the time of the dereference
+
+   -  the pointed to object is the same as when the pointer was created.
+
+#. | Those where a pointer goes out of bound
+   | **Spacial memory safety**
+
+   -  all memory dereferences are within bounds of their pointer’s valid
+      objects.
+
+   -  An object’s bounds are defined when the object is allocated.
+
+   -  Any computed pointer to that object inherits the bounds of the
+      object. Any pointer arithmetic can only result in a pointer inside
+      the same object.
+

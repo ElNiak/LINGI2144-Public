@@ -1,0 +1,798 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction &#8212; Theory 2020 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/my-style.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2020',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="Theory 2020 documentation" href="../index.html" />
+    <link rel="next" title="Basic attacks/defences" href="../basis/privilege.html" />
+    <link rel="prev" title="Welcome to Theory’s part!" href="../index.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/script.js"></script>
+
+
+
+
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/UCLouvain_Logo+moodle.png"></span>
+          LINGI2144</a>
+        <span class="navbar-text navbar-version pull-left"><b>2020</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="/index.html">Main</a></li>
+                <li><a href="/exercice/index.html">Tutorial</a></li>
+                <li><a href="/qcm/index.html">MCQ</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#objectives">Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security-a-definition">Security: A definition ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attackers-motivations">Attacker’s motivations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#risk-analysis">Risk analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attacks-classification">Attacks classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#from-vulnerabilities-to-exploit">From vulnerabilities to exploit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#some-counter-measures">Some counter measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-hack">Hardware Hack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#am-i-allowed-to-do-that">Am I allowed to do that?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../basis/privilege.html">Basic attacks/defences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basis/privilege.html#privileges-escalation">Privileges escalation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/privilege.html#integer-overflow">Integer Overflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basis/privilege.html#exploit-concurrency">Exploit Concurrency</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../memory_safety/corruption.html">Memory Safety</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../memory_safety/corruption.html#memory-handling-and-impact-of-memory-corruption">Memory handling and impact of memory corruption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../memory_safety/corruption.html#vulnerabilities-stack-and-heap">Vulnerabilities stack and heap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../memory_safety/corruption.html#id13">Memory Safety</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../memory_safety/corruption.html#prevention-detection">Prevention/detection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../assembly/assembly.html">Assembly/Debugger</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../assembly/assembly.html#assembly">Assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assembly/assembly.html#debugger-disassembler-decompiler">Debugger - disassembler - decompiler</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../buffer_overflow/exploit1.html">Buffer Overflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../buffer_overflow/exploit1.html#the-blaster-lovesan-worm">The Blaster/Lovesan worm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../buffer_overflow/exploit1.html#exploit-erase-value-of-other-local-variables">Exploit: Erase value of other local variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../buffer_overflow/exploit1.html#exploit-dos">Exploit: DoS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../buffer_overflow/exploit1.html#exploit-shellcode">Exploit: Shellcode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../complement_on_buffer/complement.html">Complement on BO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../complement_on_buffer/complement.html#situation-a-function-foo-that-call-function-bar">Situation: a function FOO that call function BAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../complement_on_buffer/complement.html#the-off-by-one-vulnerability">The &#8220;off by one vulnerability&#8221;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../complement_on_buffer/complement.html#a-note-on-architecture">A note on architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../complement_on_buffer/complement.html#common-student-questions">Common student questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../shellcode/handmake.html">Shellcode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../shellcode/handmake.html#hand-made-shellcode">Hand made shellcode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shellcode/handmake.html#dedicated-tools">Dedicated tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stack_protection/nonexec.html">Stack Protection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stack_protection/nonexec.html#facts">Facts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stack_protection/nonexec.html#non-executable-stack">Non Executable Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stack_protection/nonexec.html#stackshield">StackShield</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stack_protection/nonexec.html#stackguard">StackGuard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stack_protection/nonexec.html#address-space-layout-randomization-aslr">Address Space Layout Randomization (ASLR)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../format_string/format_string.html">Format String</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../format_string/format_string.html#definition">Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../format_string/format_string.html#shellcode-and-format-string">Shellcode and Format String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../format_string/format_string.html#prevention-detection">Prevention/Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../format_string/format_string.html#format-string-versus-bo">Format String versus BO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../format_string/format_string.html#some-vulnerabilities">Some vulnerabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../malware_analysisI/introduction.html">Malware Analysis I</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../malware_analysisI/introduction.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../malware_analysisI/introduction.html#case-study-mirai">Case Study: Mirai</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../malware_analysisI/introduction.html#how-to-obtain-malware-sample-the-honey-pot-approach">How to obtain malware sample ? The honey pot approach</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../malware_analysisII/analysis.html">Malware Analysis II</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../malware_analysisII/analysis.html#malware-analysis">Malware Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../malware_analysisII/analysis.html#static-analysis">Static Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../malware_analysisII/analysis.html#dynamic-analysis">Dynamic Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../malware_analysisIII/packing.html">Malware Analysis III</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../malware_analysisIII/packing.html#more-on-packing">More on packing</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container" >
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><div class="row" style="padding-top: 20px">
+    <div class="col-xs-6">
+        <form id="rar_tp"  target="_blank" style="text-align:center;" method="get" action="">
+            <button style="text-align:center; border-radius:12px;" type="submit" class="up">
+                <svg id="Capa_1"
+                     width="50px" height="50px"
+                     enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g><g><path d="m453.31 460.125c0 24.508-19.907 44.375-44.464 44.375h-305.692c-24.557 0-44.464-19.867-44.464-44.375v-408.25c0-24.508 19.907-44.375 44.464-44.375h190.303c8.857 0 17.35 3.516 23.606 9.773l126.505 126.521c6.239 6.239 9.742 14.694 9.742 23.508z" fill="#f9f8f9"/><path d="m133.15 504.5h-30c-24.55 0-44.46-19.87-44.46-44.38v-408.24c0-24.51 19.91-44.38 44.46-44.38h30c-24.55 0-44.46 19.87-44.46 44.38v408.24c0 24.51 19.91 44.38 44.46 44.38z" fill="#e3e0e4"/><path d="m453.31 167.3v16.24h-115.96c-33.12 0-60.06-26.95-60.06-60.07v-115.97h16.17c8.85 0 17.35 3.52 23.6 9.77l126.51 126.52c6.24 6.24 9.74 14.7 9.74 23.51z" fill="#e3e0e4"/><path d="m450.32 153.54h-112.97c-16.6 0-30.06-13.46-30.06-30.07v-112.96c3.61 1.63 6.92 3.91 9.77 6.76l126.51 126.52c2.85 2.85 5.12 6.15 6.75 9.75z" fill="#b9a1d3"/><path d="m435 438.5h-358c-22.091 0-40-17.909-40-40v-146c0-22.091 17.909-40 40-40h358c22.091 0 40 17.909 40 40v146c0 22.091-17.909 40-40 40z" fill="#b9a1d3"/><path d="m102 438.5h-25c-22.09 0-40-17.91-40-40v-146c0-22.09 17.91-40 40-40h25c-22.09 0-40 17.91-40 40v146c0 22.09 17.91 40 40 40z" fill="#9573bb"/></g><g><path d="m58.689 153.851c4.143 0 7.5-3.357 7.5-7.5v-94.476c0-20.333 16.582-36.875 36.965-36.875h111.42c4.143 0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5h-111.42c-28.653 0-51.965 23.271-51.965 51.875v94.476c0 4.142 3.358 7.5 7.5 7.5z"/><path d="m460.811 212.656v-45.354c0-10.879-4.24-21.111-11.938-28.811l-126.506-126.52c-7.718-7.72-17.985-11.971-28.91-11.971h-43.394c-4.143 0-7.5 3.357-7.5 7.5s3.357 7.5 7.5 7.5h43.394c2.165 0 4.288.264 6.334.775v107.696c0 20.714 16.85 37.566 37.561 37.566h107.694c.505 2.025.765 4.125.765 6.265v38.954c-3.476-.812-7.092-1.256-10.811-1.256h-23.319c-4.143 0-7.5 3.357-7.5 7.5s3.357 7.5 7.5 7.5h23.319c17.921 0 32.5 14.579 32.5 32.5v146c0 17.921-14.579 32.5-32.5 32.5h-268.66c-4.143 0-7.5 3.357-7.5 7.5s3.357 7.5 7.5 7.5h268.66c3.719 0 7.335-.444 10.811-1.256v15.381c0 20.333-16.582 36.875-36.965 36.875h-305.692c-20.383 0-36.965-16.542-36.965-36.875v-15.381c3.476.812 7.092 1.256 10.811 1.256h53.319c4.143 0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5h-53.319c-17.921 0-32.5-14.579-32.5-32.5v-146c0-17.921 14.579-32.5 32.5-32.5h299.702c4.143 0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5h-299.702c-3.719 0-7.335.444-10.811 1.256v-24.905c0-4.143-3.357-7.5-7.5-7.5s-7.5 3.357-7.5 7.5v31.305c-13.04 8.477-21.689 23.165-21.689 39.844v146c0 16.679 8.649 31.367 21.689 39.844v21.781c0 28.604 23.312 51.875 51.965 51.875h305.691c28.653 0 51.965-23.271 51.965-51.875v-21.781c13.041-8.477 21.689-23.165 21.689-39.844v-146c.001-16.679-8.648-31.367-21.688-39.844zm-146.02-89.185v-97.863l120.414 120.429h-97.854c-12.439 0-22.56-10.123-22.56-22.566z"/><path d="m265.669 264.091c-1.584-3.853-5.297-6.341-9.462-6.341-.003 0-.006 0-.009 0-4.168.004-7.882 2.499-9.461 6.356-.023.057-.046.114-.067.172l-45.247 118.803c-1.475 3.87.469 8.203 4.34 9.678 3.865 1.475 8.203-.468 9.678-4.34l9.429-24.757h62.347l9.335 24.736c1.458 3.914 5.891 5.823 9.665 4.368 3.875-1.462 5.831-5.789 4.368-9.665l-44.836-118.808c-.025-.067-.053-.135-.08-.202zm-35.087 84.571 25.603-67.226 25.37 67.226z"/><path d="m181.648 296.566c0-21.403-18.208-38.816-40.589-38.816h-32.021c-.007 0-.013.001-.02.001-.006 0-.013-.001-.019-.001-4.143 0-7.5 3.357-7.5 7.5v120.5c0 4.143 3.357 7.5 7.5 7.5s7.5-3.357 7.5-7.5v-50.27c1.064-.006 2.204-.012 3.398-.018l48.62 55.243c2.745 3.118 7.488 3.403 10.585.675 3.109-2.736 3.411-7.476.675-10.585l-39.967-45.411c.438 0 .862-.001 1.249-.001 22.381 0 40.589-17.413 40.589-38.817zm-40.588-23.816c13.87 0 25.589 10.906 25.589 23.816s-11.719 23.816-25.589 23.816c-5.593 0-16.825.056-24.342.096-.042-7.433-.099-18.474-.099-23.912 0-4.577-.032-16.093-.057-23.816z"/><path d="m410.5 296.566c0-21.403-18.208-38.816-40.589-38.816h-32.021c-.007 0-.013.001-.02.001-.006 0-.013-.001-.019-.001-4.143 0-7.5 3.357-7.5 7.5v120.5c0 4.143 3.357 7.5 7.5 7.5s7.5-3.357 7.5-7.5v-50.27c1.064-.006 2.204-.012 3.398-.018l48.62 55.243c2.745 3.118 7.488 3.403 10.585.675 3.109-2.736 3.411-7.476.675-10.585l-39.967-45.411c.438 0 .862-.001 1.249-.001 22.381 0 40.589-17.413 40.589-38.817zm-40.589-23.816c13.87 0 25.589 10.906 25.589 23.816s-11.719 23.816-25.589 23.816c-5.593 0-16.825.056-24.342.096-.042-7.433-.099-18.474-.099-23.912 0-4.577-.032-16.093-.057-23.816z"/></g></g>
+                </svg>
+                <br> <b> Slides </b>
+            </button>
+        </form>
+    </div>
+    <div class="col-xs-6">
+        <form id="vid_tp" style="text-align:center;">
+	<a id="notUp"  href="#!" style="text-align:center;"
+   data-title="Watch now on youtube">
+            <button class="video-btn up" onclick="topFunction()"
+                    style="text-align:center; border-radius:12px;" data-toggle="modal" type="button"
+                    data-target="#myModal"
+                    data-src="">
+                <?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg width="50px" height="50px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512.003 512.003" style="enable-background:new 0 0 512.003 512.003;" xml:space="preserve">
+<path style="fill:#E53935;" d="M443.734,80.336L330.86,70.437c-49.812-4.334-99.906-4.334-149.717,0L68.268,80.336
+	c-38.702,3.124-68.459,35.541-68.267,74.368v202.667c-0.204,38.835,29.557,71.265,68.267,74.389l112.939,9.813
+	c24.832,2.133,49.835,3.243,74.859,3.243c25.024,0,50.027-1.067,74.859-3.243l112.939-9.813c38.659-3.187,68.348-35.6,68.139-74.389
+	V154.704C512.194,115.877,482.436,83.459,443.734,80.336z"/>
+<path style="fill:#FAFAFA;" d="M357.782,247.077l-149.333-96c-4.951-3.193-11.552-1.768-14.745,3.183
+	c-1.111,1.722-1.702,3.728-1.703,5.777v192c0.002,5.891,4.78,10.665,10.671,10.663c2.049-0.001,4.055-0.592,5.777-1.703l149.333-96
+	c4.954-3.187,6.387-9.787,3.2-14.742c-0.825-1.283-1.917-2.374-3.2-3.2V247.077z"/>
+<path d="M256.001,444.816c-25.003,0-50.005-1.088-74.837-3.243l-112.896-9.835c-38.71-3.124-68.471-35.554-68.267-74.389V154.683
+	c-0.182-38.819,29.573-71.224,68.267-74.347l112.896-9.899c49.797-4.334,99.877-4.334,149.675,0l112.96,9.813
+	c38.717,3.158,68.454,35.629,68.203,74.475v202.667c0.204,38.835-29.557,71.265-68.267,74.389l0,0l-112.96,9.813
+	C306.028,443.771,281.004,444.816,256.001,444.816z M256.001,88.549c-24.405,0-48.768,1.067-72.981,3.157L69.953,101.52
+	c-27.614,2.317-48.794,25.495-48.619,53.205v202.667c-0.116,27.7,21.097,50.827,48.704,53.099l112.96,9.813
+	c48.57,4.209,97.414,4.209,145.984,0l113.067-9.813c27.589-2.315,48.76-25.456,48.619-53.141V154.683
+	c0.116-27.7-21.097-50.827-48.704-53.099l-112.96-9.813c-24.235-2.105-48.569-3.164-73.003-3.179V88.549z"/>
+<path d="M202.668,362.704c-5.891,0-10.667-4.776-10.667-10.667v-192c-0.01-5.891,4.758-10.674,10.649-10.684
+	c2.057-0.003,4.07,0.588,5.799,1.703l149.333,96c4.96,3.178,6.405,9.776,3.227,14.736c-0.83,1.296-1.931,2.397-3.227,3.227
+	l-149.333,96C206.724,362.124,204.717,362.709,202.668,362.704z M213.334,179.579v152.917l118.933-76.459L213.334,179.579z"/>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+
+                <br> <b>  Video </b>
+            </button>
+        </a>
+</form>
+
+  <!-- Modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-body">
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <!-- 16:9 aspect ratio -->
+          <div id="video-view" class="embed-responsive embed-responsive-16by9">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+</div>
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form><ul>
+<li><a class="reference internal" href="#">Introduction</a><ul>
+<li><a class="reference internal" href="#objectives">Objectives</a><ul>
+<li><a class="reference internal" href="#hacking-tools">Hacking tools</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#security-a-definition">Security: A definition ?</a><ul>
+<li><a class="reference internal" href="#difference-between-safety-and-security">Difference between safety and security</a></li>
+<li><a class="reference internal" href="#cyber-security">Cyber security</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#attackers-motivations">Attacker’s motivations</a><ul>
+<li><a class="reference internal" href="#critical-infrastructures">Critical infrastructures</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#risk-analysis">Risk analysis</a><ul>
+<li><a class="reference internal" href="#security-triad">Security triad</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#attacks-classification">Attacks classification</a></li>
+<li><a class="reference internal" href="#from-vulnerabilities-to-exploit">From vulnerabilities to exploit</a><ul>
+<li><a class="reference internal" href="#vulnerability-threat-attack">Vulnerability, Threat, Attack</a></li>
+<li><a class="reference internal" href="#timeline-of-an-attack">Timeline of an attack</a></li>
+<li><a class="reference internal" href="#spy-and-intrusion">Spy and intrusion</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#some-counter-measures">Some counter measures</a><ul>
+<li><a class="reference internal" href="#safe-links-database-example">Safe links - Database example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hardware-hack">Hardware Hack</a></li>
+<li><a class="reference internal" href="#am-i-allowed-to-do-that">Am I allowed to do that?</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main" >
+      
+  <hr class="docutils" />
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">The main objective of this course is to <strong>make sure that computer
+systems do not divert from their defined behavior</strong> since unexpected
+behaviors may have dramatic humain and economical effects. In the past
+most unexpected behaviors arose from mistakes involuntarily made by
+people, the objective was to remove those mistakes and there was no
+desire to exploit them.</div>
+</div>
+<p>Now the situation has changed, attackers are looking for weaknesses
+(often called <strong>vulnerabilities</strong>) <strong>deliberately “perturbate”</strong> a
+system which may be introduced <strong>intentionally</strong>. Our goal will be in
+the context of software :</p>
+<ol class="arabic simple">
+<li>To understand <strong>classical vulnerabilities</strong> (buffer overflow ,
+privileges escalation,...)</li>
+<li>To understand how they can be <strong>exploited</strong> in larger attacks shell ,
+backdoor,...)</li>
+<li>To <strong>mitigate</strong> those vulnerabilities as much as possible (canary,
+smatching ,...)</li>
+</ol>
+<div class="section" id="hacking-tools">
+<h3>Hacking tools<a class="headerlink" href="#hacking-tools" title="Permalink to this headline">¶</a></h3>
+<p>The course introduces vulnerabilities that lead to exploits. There is a
+wide range of pre-computed exploits to be applied but the objective is
+to create our own exploits and not only reusing ones.</p>
+<p>Attacks are difficult to find, but often easy to reproduce!</p>
+</div>
+</div>
+<div class="section" id="security-a-definition">
+<h2>Security: A definition ?<a class="headerlink" href="#security-a-definition" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="difference-between-safety-and-security">
+<h3>Difference between safety and security<a class="headerlink" href="#difference-between-safety-and-security" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Safety</th>
+<th class="head">Security</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Protect against fault <strong>unintended</strong> consequences. Defined by statistic
+on life duration of hardware.</td>
+<td>Protect against <strong>voluntary</strong> malicious actions. Cannot be quantified.</td>
+</tr>
+<tr class="row-odd"><td>Example: error hardware failure</td>
+<td>Example: deny of service, data theft</td>
+</tr>
+<tr class="row-even"><td>Deflect: backup</td>
+<td>Deflect: access control, filtering</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Safety helps security.</strong> As an example: disponibility. One tries to chose
+equipment that have a long lifetime and that are reliable (almost no
+bug).</p>
+</div>
+<div class="section" id="cyber-security">
+<h3>Cyber security<a class="headerlink" href="#cyber-security" title="Permalink to this headline">¶</a></h3>
+<p>Cyber security aims at <strong>reducing risks</strong> to limit their impact on the
+system. The objective is <strong>not obstruction</strong>, but to contribute to
+quality of service and to guarantee the right security level to workers.
+It has a <strong>financial cost</strong> whether you push for it or whether you let
+it be broken.</p>
+</div>
+</div>
+<div class="section" id="attackers-motivations">
+<h2>Attacker’s motivations<a class="headerlink" href="#attackers-motivations" title="Permalink to this headline">¶</a></h2>
+<p>During the old good day, the motivations was mainly for fun but
+nowadays, there is the rise of very organized cyber delinquency with
+main objectives to damage, to harm money, politics, religion, concurrent
+organization, mercenaries, ...</p>
+<p>These new web-based (and criminal) financial organization are compose of various
+actors:</p>
+<ul class="simple">
+<li>Group of specialist in vulnerability analysis, malwares, exploits,
+... (<img class="math" src="../_images/math/f83e0c11055f53d8b8d4d5968e1adb756869862c.png" alt="="/> TECos)</li>
+<li>And groups to exploit and commercialize services to conduct cyber
+security attacks. (i.e Host site to store malicious content, Groups
+who sell stolen data, mostly banking ones, Financial intermediary to
+store the money, ...)</li>
+</ul>
+<p>The potential objectives and consequence are vast but it usually concern
+either <strong>financial reward</strong>, either <strong>resources stealing</strong>, either
+<strong>blackmail/extortion</strong>, or even <strong>intelligence gathering</strong> which can lead to
+<em>privacy/reputation issues</em>, <em>lose of data</em>, <em>identity theft</em> and have
+<em>financial impacts</em> concerning private life and also <em>legal</em> and organisational* impact for the industry. (<img class="math" src="../_images/math/f83e0c11055f53d8b8d4d5968e1adb756869862c.png" alt="="/> <strong>black hat</strong>).</p>
+<p>Here are some examples:</p>
+<ul class="simple">
+<li>Rex Mundi that steal customer data of Dominos Pizza in France and threaten them to to reveal everything if they do not pay them.</li>
+<li>Cryptolocker that ask for some bitcoin in exchange of a key to unlock the infected system.</li>
+<li>A medical company where the risk is to leak personal data from patients (confidentiality) which can impact their image and finance. This could motivated
+by revenge or competition</li>
+<li>A nuclear/electric plant where the risk is to shutdown the plant (availability) and can impact the service. Here the
+motivation is to paralyse the <strong>vital structure</strong>.</li>
+</ul>
+<p>Not hackers are bad guys, some of them have as main objective to find vulnerabilities and force
+correction(<img class="math" src="../_images/math/f83e0c11055f53d8b8d4d5968e1adb756869862c.png" alt="="/> <strong>white hat</strong>).
+Example: Barnaby Jack and the jackpot hit/atm jackpotting</p>
+<div class="section" id="critical-infrastructures">
+<h3>Critical infrastructures<a class="headerlink" href="#critical-infrastructures" title="Permalink to this headline">¶</a></h3>
+<p>The critical infrastructures are the et of organisations among activity sectors that are essential for a nation.
+They represent the sectors of interest, e.g</p>
+<ul class="simple">
+<li>State: military activities, justice,...</li>
+<li>Protection of citizens: health, water supply, food</li>
+<li>Economy and society: energy, communication, transport, and finances and some industry</li>
+</ul>
+<p>In France/Belgium, these are classified as <strong>vital operators</strong>. The exact list is secret.</p>
+</div>
+</div>
+<div class="section" id="risk-analysis">
+<h2>Risk analysis<a class="headerlink" href="#risk-analysis" title="Permalink to this headline">¶</a></h2>
+<p>As time goes on, the standards and guidelines for cyber security will
+become more stringent, even though it is currently cheaper to ignore
+these issues until an attack occurs. Companies have to conduct security
+audits, GDPR imposes security referent (RSSI) to each company even small
+ones. Norms exists to perform risk analysis (ISO 27001, ...) Most of
+time, they’re adapted from financial risk. Norms frame what has to be
+checked, the security attributes, but not how to check them.</p>
+<div class="section" id="security-triad">
+<h3>Security triad<a class="headerlink" href="#security-triad" title="Permalink to this headline">¶</a></h3>
+<p>Criteria used to <strong>define security levels of an IS</strong> and is used as a <strong>metric
+to evaluate its security</strong>.</p>
+<ol class="arabic">
+<li><p class="first"><strong>Disponibity</strong> :</p>
+<p>Can be accessed <strong>when needed by those who are
+allowed</strong>, those who are not allowed should not forbid access to
+those who are allowed.</p>
+</li>
+<li><p class="first"><strong>Integrity</strong> :</p>
+<p><strong>Must be exact and complete</strong>. Should not be
+modified in an illegal illegitimate manner, but only by those who are
+allowed</p>
+</li>
+<li><p class="first"><strong>Confidentiality</strong> :</p>
+<p>Can only be accessed by <strong>those who are
+allowed</strong>, and forbid them to disclose information to those who are
+not allowed to access it</p>
+</li>
+</ol>
+<p>Can be: Strong, average, low average, ...</p>
+<div class="math">
+<p><img src="../_images/math/3f86a77dc95fea01b3f2dac102ed4923f32ddecd.png" alt="\textsc{Risk
+against Triad} = \textsc{Attackers} * \textsc{Vulnerabilities}*\textsc{Impact}"/></p>
+</div><p>Risk analysis is a core business and is proven to save money. Can be
+free (EBIOS by ANSSI) or expensive (Octave, Cramm, String). Can be
+dedicated to a specific business or general but in reality cannot be
+entirely deployed because they are too wide/complex.</p>
+</div>
+</div>
+<div class="section" id="attacks-classification">
+<h2>Attacks classification<a class="headerlink" href="#attacks-classification" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><div class="first line-block">
+<div class="line"><strong>Indiscriminate attacks</strong> (petya, red october [malware collects many
+things], ...) are wide ranging and global, <strong>without specific target</strong></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Destructive attacks</strong> (TV5, operation ababil [us, financial], ..)
+relate to inflicting damage on <strong>specific organizations</strong></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Cyberwarfare attacks</strong> (Estonia , Burma, ...) are <strong>politically
+motivated</strong> destructive attacks aimed at sabotage and espionage.</div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Government espionage attack</strong> (ghostnet , ...) aim at <strong>stealing
+government information</strong></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Corporate espionage attacks</strong> (operation socialists, …) aim at
+<strong>stealing proprietary methods</strong></div>
+</div>
+</li>
+<li><p class="first">Other <strong>private life oriented attacks</strong> aim at</p>
+<ul class="simple">
+<li><strong>stealing credit card/financial data</strong></li>
+<li>and <strong>stealing medical related data</strong></li>
+</ul>
+</li>
+</ol>
+<p>In constant evolution with technology and opportunities!</p>
+</div>
+<div class="section" id="from-vulnerabilities-to-exploit">
+<h2>From vulnerabilities to exploit<a class="headerlink" href="#from-vulnerabilities-to-exploit" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="vulnerability-threat-attack">
+<h3>Vulnerability, Threat, Attack<a class="headerlink" href="#vulnerability-threat-attack" title="Permalink to this headline">¶</a></h3>
+<p>An attack only occurs if a vulnerability exists, so the first goal of an
+attacker is to find such a vulnerability where the potential <strong>surface
+of attack</strong> is large (e.g connected car with many components). It goes
+from software or hardware to their interactions and connections.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="30%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="first reference internal image-reference" href="../_images/1.PNG"><img alt="../_images/1.PNG" src="../_images/1.PNG" style="width: 181.8px; height: 102.9px;" /></a>
+<ol class="last loweralpha simple">
+<li>A vulnerability is a weakness of the asset (software, human)</li>
+</ol>
+</td>
+<td><a class="first reference internal image-reference" href="../_images/2.PNG"><img alt="../_images/2.PNG" src="../_images/2.PNG" style="width: 266.4px; height: 169.8px;" /></a>
+<ol class="last loweralpha simple" start="2">
+<li>Exploited by the attacker threat to conduct an attack</li>
+</ol>
+</td>
+<td><a class="first reference internal image-reference" href="../_images/3.PNG"><img alt="../_images/3.PNG" src="../_images/3.PNG" style="width: 174.0px; height: 155.4px;" /></a>
+<ol class="last loweralpha simple" start="3">
+<li>An attack is a malicious action that targets the security of an asset,
+is the concretization of a threat and exploits a vulnerability.</li>
+</ol>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="timeline-of-an-attack">
+<h3>Timeline of an attack<a class="headerlink" href="#timeline-of-an-attack" title="Permalink to this headline">¶</a></h3>
+<p>There is <strong>no clear definition</strong> of what are cyber attack steps but here are
+the main ones :</p>
+<ol class="arabic">
+<li><div class="first line-block">
+<div class="line"><strong>Spy</strong>: Find a vulnerability to access the system (fishing, buffer
+overflow, ...)</div>
+<div class="line"><em>Software vulnerability via memory time and space issues</em></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Intrusion</strong>: Exploit vulnerability to get an access to the system</div>
+<div class="line"><em>Buffer overflow and format string overflow</em></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Escalation/spread</strong>: Escalade privileges (root, get access to
+other user account of the system)</div>
+<div class="line"><em>Root access for linux systems</em></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Attack</strong>: Break one or more cyber security attribute</div>
+<div class="line"><em>Mirai Malware</em></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Disappear</strong>: Elimination of traces of activities</div>
+<div class="line"><em>Not done here</em></div>
+</div>
+</li>
+</ol>
+<p>Example :</p>
+<ol class="arabic simple">
+<li>Pirate spies the system and notices that a ssh service remains open
+on a remote machine via username password access only (SSH ports and
+services should not be opened <img class="math" src="../_images/math/db2555e54bec0d091b2124dccd645c2d7ddaae68.png" alt="\rightarrow"/> Fishing and
+backdoors and buffer overflow)</li>
+<li>Pirate brute forces the access using <em>john the ripper</em> software and
+get access</li>
+<li>Pirate notices that python is installed and can be launched with
+<code class="docutils literal"><span class="pre">sudo</span></code> command. From there he gets access to any account in the
+system (Python should not be started with sudo <img class="math" src="../_images/math/db2555e54bec0d091b2124dccd645c2d7ddaae68.png" alt="\rightarrow"/>
+Kernel and Cron exploit)</li>
+<li>Pirate changes the password of all users</li>
+<li>Pirate cleans the logs of the system and disconnect</li>
+</ol>
+</div>
+<div class="section" id="spy-and-intrusion">
+<h3>Spy and intrusion<a class="headerlink" href="#spy-and-intrusion" title="Permalink to this headline">¶</a></h3>
+<p>There are two common ways to access a computer:</p>
+<ol class="arabic">
+<li><p class="first"><strong>Fishing</strong>: is often a first step to gain access , before privilege
+escalation (and technical), two times more aggressive for individuals
+than companies. This usually take the form of an official email that ask
+for login or something else bad.</p>
+<ul class="simple">
+<li>Do not pay, probably fake and easily checked on Google.</li>
+<li>140 attacks per hour</li>
+<li>2 times more aggressive for individuals than companies.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Technical</strong> (backdoor, password hack, protocol abuse, ...)</p>
+<ol class="arabic simple">
+<li>Find open port/service</li>
+<li>Hack password (john the riper)</li>
+<li>Buffer oveflow messages in exchange protocols</li>
+<li>Exploit a backdoor (Eternalblue)</li>
+<li>...</li>
+</ol>
+<p>Can be found on : <a class="reference external" href="https://www.cvedetails.com/">https://www.cvedetails.com/</a>. We can also use the
+<strong>Metasploit Framework</strong> is an open source penetration testing and
+development platform that provides exploits for a variety of
+applications, operating systems and platforms. Metasploit is one of
+the most commonly used penetration testing tools and comes built-in
+to Kali Linux.</p>
+<p>The main components of the Metasploit Framework are called modules.
+Modules are standalone pieces of code or software that provide
+functionality to Metasploit. There are six total modules: exploits
+(takes advantage of a system’s vulnerability and installs a payload),
+payloads (gives access to the system by a variety of methods),
+auxiliary, nops, posts, and encoders.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="some-counter-measures">
+<h2>Some counter measures<a class="headerlink" href="#some-counter-measures" title="Permalink to this headline">¶</a></h2>
+<p>Counter measures helps to perceive the system to be safer but this is
+not always the case, and a counter measure may be vulnerable.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Some known</th>
+<th class="head">More technical</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>No &#64; in URLs</td>
+<td>Artificial intelligence</td>
+</tr>
+<tr class="row-odd"><td>Check domain’s name and Certificats</td>
+<td>Stack/ heap /compiler protections</td>
+</tr>
+<tr class="row-even"><td>Anti-spam and anti-virus</td>
+<td>Static and dynamic validation tools</td>
+</tr>
+<tr class="row-odd"><td>Software update</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Example :</p>
+<ul class="simple">
+<li>Security: « if you lose your password, please click here, a code will be send via SMS »</li>
+<li>Problem: during years, it was possible to redirect phone number via phone call to
+operator</li>
+</ul>
+<div class="section" id="safe-links-database-example">
+<h3>Safe links - Database example<a class="headerlink" href="#safe-links-database-example" title="Permalink to this headline">¶</a></h3>
+<p>When someone clicks on a URL in an email, Safe Links (anti-virus/static)
+checks if it is malicious or safe before rendering the webpage in the
+user’s browser. This is done via static comparison with Microsoft
+database. If the URL is identified as insecure, the user is taken to a
+page displaying a warning message asking them if they wish to continue
+to the unsafe destination.</p>
+<div class="line-block">
+<div class="line">Example for url <code class="docutils literal"><span class="pre">https://www.avanan.com</span></code> which is used as :</div>
+</div>
+<p class="centered">
+<strong><code class="docutils literal"><span class="pre">https://na01.safelinks.protection.outlook.com/?url=www.avanan.com</span></code></strong></p><div class="line-block">
+<div class="line">This is unsafe/not ultimate:</div>
+</div>
+<ul>
+<li><p class="first">NSA could collaborate with Microsoft (intentional backdoor)</p>
+</li>
+<li><p class="first">Safe Links does not dynamically scan URLs: it only verifies if the
+URL is on known blacklists of malicious sites. It struggles to detect
+zero day, unknown URLs.</p>
+</li>
+<li><p class="first">Safe Links can’t act on detection Across Mailboxes: identifies a
+malicious URL, it does not generate an alert to notify admin of
+instances of the same link in other user mailboxes.</p>
+</li>
+<li><div class="first line-block">
+<div class="line">Safe Links scan doesn’t apply safe links to domains that are white
+listed by Microsoft. Popular sites like Google.com are given a
+pass.</div>
+<div class="line">Danger: &#8220;<strong>Open Redirect Google Attack</strong>&#8221;.</div>
+<div class="line">Problems: Google never said it will check links … and it trusts its
+ow domain! Google redirect vulnerability: send your secretary a
+mail with the following link</div>
+</div>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/4.PNG"><img alt="../_images/4.PNG" class="align-center" src="../_images/4.PNG" style="width: 594.0px; height: 207.0px;" /></a>
+<div class="line-block">
+<div class="line">“When Safe Links used to rewrite URLs, it created a false sense of security that misled users, and undermined efforts to encourage people to inspect URLs for misspellings or other suspicious indicators. Now that Safe Links leverages Native Link Rendering to preserve the original URL for the end user, Safe Links deserves the name. However, there are still some obscure workarounds that hackers can employ to interfere with the protection available in Microsoft ATP”</div>
+</div>
+</div>
+</div>
+<div class="section" id="hardware-hack">
+<h2>Hardware Hack<a class="headerlink" href="#hardware-hack" title="Permalink to this headline">¶</a></h2>
+<p>It is expected that attack surface is at software level. However , it is
+not always the case: <strong>hardware surface</strong> shall be considered.</p>
+<ul class="simple">
+<li>Hardware from IoT or even family computers offers a wide range of
+perspectives</li>
+<li>Some are still at proof concept level . Ex: <strong>Frozen Memory Hack</strong></li>
+<li>Others are already deployed . Ex: <strong>hardware keylogger</strong> (Keylogger are
+software that records the keys struck on a keyboard, used to spy but
+must be installed directly on computer, Hardware keylogger do the
+same but at hardware level)</li>
+</ul>
+</div>
+<div class="section" id="am-i-allowed-to-do-that">
+<h2>Am I allowed to do that?<a class="headerlink" href="#am-i-allowed-to-do-that" title="Permalink to this headline">¶</a></h2>
+<p class="centered">
+<strong><strong>On your own machine only</strong></strong></p><p class="centered">
+<strong><a class="reference external" href="https://www.belgium.be/fr/justice/securite/criminalite/criminalite_informatique/hacking">Read More</a></strong></p><p>“Hacking is a very vague notion. Consists of illegally entering a
+computer system. This &#8220;break-in&#8221; generally implies an intention
+fraudulent. <strong>But unintentionally making a connection and keeping it
+willfully is also considered piracy. Even hack a
+computer system that is not or barely secure is punishable.</strong>&#8220;</p>
+<p>“In assessing hacking, the law <strong>distinguishes &#8216;insiders&#8217; from &#8216;outsiders&#8217;</strong>. The
+insiders have access permission, but override that permission.
+These people are only punishable if their hacking conceals an intention to
+harm or fraudulent intent. For &#8220;outsiders&#8221;, this restriction does not exist
+not: they are in all cases liable to sanctions, even if they intrude
+in a system with &#8220;good intentions&#8221;. &#8220;</p>
+<p>&#8220;<strong>It is forbidden to collect or offer - for remuneration or not - data</strong>
+allowing computer breaches. This ban aims above all to curb
+the trade in access codes and &#8216;hacking tools&#8217;. &#8220;</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a id="up" href="#">
+        <span class="fa fa-chevron-up"></span>
+      </a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+        &copy; Copyright 2020, Legay Axel, Duchene Fabien, Crochet Christophe, Schmitz Donatien.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.9.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

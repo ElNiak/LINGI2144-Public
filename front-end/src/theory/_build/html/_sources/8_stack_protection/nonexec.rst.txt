@@ -1,0 +1,81 @@
+Stack Protection
+****************
+
+Non Executable Stack
+--------------------
+Most of buffer overflow exploits that involve shell code require to:
+
+#. Push the shellcode on the stack
+
+#. Execute the shellcode
+
+.. literalinclude:: ne.sh
+   :language: bash
+
+Bypassing protection - ``ret2libc``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Most of attacks related to shellcode aims at opening a shell. For
+simplicity, let’s assume that this shellcode is done with
+``system("/bin/sh")``.
+
+Remind that call address of function is equivalent to
+
+#. ``push eip``
+
+#. ``jmp address``
+
+Remind also that when entering a function ``funcillu``, after call the
+stack contains:
+
+#. ``saved EIP``
+
+#. local parameter of ``funcillu``
+
+``ret2libc``
+^^^^^^^^^^^^
+
+Smash the stack so that when leaving a function, the return address is
+the one of ``system()`` and rearange the stack so that it contains local
+parameters for ``system()``
+
+
+..  image:: image/21.PNG
+    :scale: 80%
+    :align: center
+
+How to find addresses ?
+~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Obtaining ``system()`` address is easy.  [1]_
+
+   -  Function is present is dynamic libraries
+
+   -  In gdb, the command is ``p system``
+
+-  Finding address of ``/bin/sh`` is a bit more complex
+
+   -  String may not be present
+
+   -  Let’s scan memory from 0 to 99 999 999 bytes
+
+   -  In gdb: ``find__libc_start_main, + 99999999, "/bin/sh"``
+
+   What to do in case ``/bin/sh`` does not exist, since there is not
+   guarantee than ``/bin/sh`` has bee stored:
+
+   -  Solution: store it in environment’s set of variables
+
+   -  set environment ``HACKNDO=/bin/sh``
+
+   -  The address can now be retrieved: ``x/s *((char **) environ+x)``
+      where ``x`` is the index of ``environ``
+
+   It may take time :math:`\rightarrow` **automatize** the process
+
+.. [1]
+   https://www.exploit-db.com/docs/english/28553-linux-classic-return-to-libc-&-return-to-libc-chaining-tutorial.pdf
+
+.. include:: stackshield.rst
+.. include:: stackguard.rst
+.. include:: aslr.rst
