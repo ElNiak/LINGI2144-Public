@@ -7,4 +7,6 @@ Tutorial 7: Format String
 =========================
 
 
-.. centered:: Still not authorized by the professor :/
+.. raw:: html
+
+   <br><h3 style='text-align: center;'> Still not authorized by the professor  :/ </h3>
