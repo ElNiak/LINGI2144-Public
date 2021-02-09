@@ -1,3 +1,3 @@
 #!/bin/bash
 touch *.rst
-sudo make html
+make html

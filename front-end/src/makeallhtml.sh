@@ -1,10 +1,10 @@
 #!/bin/bash
-chmod +x makehtml.sh && sudo ./makehtml.sh
-cd theory && chmod +x makehtml.sh &&  sudo ./makehtml.sh
+bash makehtml.sh
+cd theory &&  bash makehtml.sh
 cd ..
-cd exercice && chmod +x makehtml.sh && sudo ./makehtml.sh
+cd exercice && bash makehtml.sh
 cd ..
-cd qcm && chmod +x makehtml.sh && sudo ./makehtml.sh
+cd qcm && bash makehtml.sh
 
 cd ..
 bash move_html.sh
