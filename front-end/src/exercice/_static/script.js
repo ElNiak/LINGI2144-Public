@@ -30,6 +30,17 @@ function getVideo(path) {
     return vid;
 }
 
+function remove_tp_button() {
+    $(document).ready(function() {
+        if ($(".not_allowed")[0]){
+            // Do something if class exists
+            hideFiles();
+        } else {
+            // Do something if class does not exist
+        }
+    });
+}
+
 function updateSol(classe,dataTarget,parentId) {
     $(document).ready(function() {
         //console.log("test");
@@ -286,6 +297,7 @@ function smoothScroll() {
 $(document).ready(function() {
     convertPHP();
     var path = window.location.pathname;
+    remove_tp_button();
     getTPpdf(path);
     getTPzip(path);
     var vid = getVideo(path)

@@ -8,4 +8,4 @@ Tutorial 3: Debugging with ``GDB``
 
 .. raw:: html
 
-   <br><h3 style='text-align: center;'> Still not authorized by the professor  :/ </h3>
+   <br><h3 style='text-align: center;' class="not_allowed"> Still not authorized by the professor  :/ </h3>
