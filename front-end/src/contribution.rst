@@ -15,7 +15,7 @@ and then ask for a pull request. More on that here:
 
 If you want to improve the website here is the repository:
 
-.. centered:: https://github.com/ElNiak/LINGI2144-Secured-System-Engineering-Syllabus
+.. centered:: https://github.com/ElNiak/LINGI2144-Public.git
 
 And if you want to improve the tutorials here is the repository:
 

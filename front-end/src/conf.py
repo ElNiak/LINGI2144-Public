@@ -128,7 +128,7 @@ html_theme_options = {
     'navbar_links': [
         #("theory", "/theory/"),
         #("Practical Sessions", "examples"),
-        ("GitHub", "https://github.com/ElNiak/LINGI2144-Secured-System-Engineering-Syllabus.git", True),
+        ("GitHub", "https://github.com/ElNiak/LINGI2144-Public.git", True),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)
