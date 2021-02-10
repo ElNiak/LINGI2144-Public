@@ -184,17 +184,17 @@ European medical agency: COVID-19 Vaccin
 
 - Several reasons:
 
-   1. Check accuracy of public informations, or contracts
+  1. Check accuracy of public informations, or contracts
 
-   2. Anti-Vax
+  2. Anti-Vax
 
-   3. ...
+  3. ...
 
 - Who could have done that?
 
-   - A country (to sell another vaccin)
+  - A country (to sell another vaccin)
 
-   - A group of Hacktivist (just because they disagree). 
+  - A group of Hacktivist (just because they disagree). 
 
 Sunburst 2020 
 """""""""""""
@@ -207,17 +207,17 @@ Sunburst 2020
 
 - Vector of infection:
 
-   - Introduced via software updates (due to password available on dark web)
+  - Introduced via software updates (due to password available on dark web)
 
-   - Elaborated code: use same librairies as the rest of the plateform
+  - Elaborated code: use same librairies as the rest of the plateform
 
 - Action:
 
-   - Sleeps from a few hours to a few weeks
+  - Sleeps from a few hours to a few weeks
 
-   - Send DNS requests to a C&C server
+  - Send DNS requests to a C&C server
 
-   - If interesting, then start spying
+  - If interesting, then start spying
 
 - Happened at a time when US president kicked off security advisor
 
