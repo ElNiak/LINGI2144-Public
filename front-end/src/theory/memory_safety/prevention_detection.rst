@@ -31,7 +31,9 @@ Protections
 Static Detection
 ~~~~~~~~~~~~~~~~
 
-Detection solutions typically done at **conception** time:
+Detection solutions typically done at **conception** time.
+
+They execute the code:
 
 -  | **Testing** (which test specification)
    | Compares input/output wrt a model/some requirements and requires
@@ -55,6 +57,8 @@ Detection solutions typically done at **conception** time:
    -  Well known tool: ``American fuzzer loop``, ``radamsa`` , ``zzuff``, ``webfuzz``
       (for the web).
 
+They work on a math model:
+
 -  | **Verification**
    | Tries to verify system represented by a **math model**. Usually a
      combination of manual and automated efforts (fully not yet
@@ -65,17 +69,85 @@ Detection solutions typically done at **conception** time:
 
 -  **Model checking** (not really used)
 
-.. image:: /memory_safety/image/7.PNG
-   :scale: 50%
-   :align: center
+   .. image:: /memory_safety/image/7.PNG
+      :scale: 50%
+      :align: center
 
--  | **Symbolic execution** (may use CP to be solved but may not always
-     be applied and may lead to state explosion)
+   Example of model checker:
+
+   -  SPIN (http://spinroot.com/spin/whatispin.html)
+
+   -  UPPAAL (https://uppaal.org/)
+
+   -  Able to handle case of large size (Metro, Nasa Rover, …)
+
+   -  Don’t forget the math model (for system and specifications)!
+
+   -  **The checker can handle things that can be represented within the
+      model**
+
+   Examples of a “math model”:
+
+   .. image:: /memory_safety/image/mathmodel.png
+      :scale: 50%
+      :align: center
+
+   Difficulties with model checking:
+
+   #. The math model needs to be created (often manually)
+
+   #. Often done via pseudo-code
+
+   #. Warning: Explore all behaviors :math:`\Rightarrow` State-space
+      explosion problem
+
+   In practice:
+
+   ::
+
+      C Good to handle global specification: «if I have the access code,
+      then I can enter»
+
+      Not so good to handle memory-based properties: «there is no buffer
+      overflow in this code»
+
+   **Solution**: Bounded model checking
+
+   -  Explore all paths up to a certain depth (no liveness)
+
+   -  Often based on translating the code to Boolean Formula (automatic)
+
+   -  Still a math model … but with efficient decision procedures
+
+   -  Can handle specifications and code properties
+
+   -  Example: CBMC (https://www.cprover.org/cbmc/)
+
+      .. literalinclude:: cbmc.c
+         :language: c
+
+      Only static !
+
+      .. literalinclude:: cbmc2.c
+         :language: c
+
+   Difficulties with bounded model checking:
+
+   #. Even if bounded, number of paths may still be too big
+
+   #. Solution: Symbolic execution: Explore several paths symbolically but
+      do not explore all paths
+      
+-  | **Symbolic execution** (may use CP to be solved but may not always be applied and may lead to
+   state explosion)
    | Tries to combine execution (testing, fuzzing) with formal methods
-     (verification), T-towards “clever coverage fuzzing”. Good for
-     reasoning over complex code, better coverage than classical
-     fuzzing. Can find memory problems with precise examples, can
-     produce constraints/conditions of memory problem.
+   (verification), T-towards “clever coverage fuzzing”. Advanced static
+   analysis, decompile the binary and execute it symbolically to detect
+   many execution paths. Group variables in domains (:math:`x` in
+   :math:`[0,2]` instead of :math:`x=0,x=1,x=2`). Good for reasoning over
+   complex code, better coverage than classical fuzzing. Can find memory
+   problems with precise examples, can produce constraints/conditions of
+   memory problem.
 
    -  Well known tools: ``Dart``, ``Cute``, ``Klee`` (used by Microsoft)
 
@@ -111,6 +183,7 @@ Goal is to help development avoid mistakes, but all have limitations.
 Runtime Solutions
 ~~~~~~~~~~~~~~~~~
 
+All the previous detection techniques are based on models and/or exploring paths (sometimes with selections). Let us try to work at execution time directly!
 Detection solutions designed to operate at runtime:
 
 #. **Tripwire**: Add markers in memory (at the bounds of allocations, of
@@ -206,6 +279,12 @@ are often written with language such as C. Consequently, they can suffer
 from memory vulnerability, we just need to know internal detail of the
 language we are using.
 
+.. literalinclude:: pyth1.sh
+   :language: bash
+
+.. literalinclude:: pyth2.sh
+   :language: bash
+
 What about java
 ^^^^^^^^^^^^^^^
 
@@ -217,3 +296,7 @@ cmd is not defined cmd string will be NULL and Java will throw a
    :language: java
 
 There is also vulnerability when using **reflexion**.
+
+.. literalinclude:: jv2.java
+   :language: java
+

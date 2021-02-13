@@ -9,8 +9,8 @@ exploitation/facilities really depends on the programming language in
 use. [1]_.
 
 As small reminder, one byte is the concatenation of 8 bits and allow to
-encode 256 values in the decimal system. For the hexadecimal system,
-digits are between 0 and 14(F) and are the concatenation of 4 bits so
+encode 255 values in the decimal system. For the hexadecimal system,
+digits are between 0 and 15(F) and are the concatenation of 4 bits so
 two digits make one byte.
 
 Processor and memory

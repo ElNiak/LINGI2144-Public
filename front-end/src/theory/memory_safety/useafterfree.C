@@ -1,3 +1,4 @@
+//example 1
 typedef struct{
     void (*vulnfunc )();
 } exploitable;

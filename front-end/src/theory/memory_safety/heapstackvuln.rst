@@ -70,7 +70,14 @@ first most similar chunk in size.
    .. literalinclude:: useafterfree.C
       :language: c
 
+   .. literalinclude:: useafterfree2.C
+      :language: c
+
    Complementary: Use tools such as ``VALGRIND``.
+
+   .. image:: /memory_safety/image/valgrind.png
+      :scale: 50%
+      :align: center
 
 -  **Double free vulnerability**: the **exploit** is here to read write part
    of the memory you should not touch. Here the justification with the
