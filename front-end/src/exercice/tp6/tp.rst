@@ -8,4 +8,7 @@ Tutorial 6: Protection
 
 .. raw:: html
 
+   <script type="text/javascript">
+      hideSolution();
+   </script>
    <br><h3 style='text-align: center;' class="not_allowed"> Still not authorized by the professor  :/ </h3>
