@@ -10,6 +10,6 @@ Tutorial 7: Format String
 .. raw:: html
 
    <script type="text/javascript">
-      hideSolution();
+      hideFiles();
    </script>
    <br><h3 style='text-align: center;' class="not_allowed"> Still not authorized by the professor  :/ </h3>
