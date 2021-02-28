@@ -1,5 +1,5 @@
 #!/bin/bash
-touch *.rst
+find . -type f -name "*.rst" -exec touch {} +
 make html
 
 files=(/tp0/tp /tp1/tp /tp2/tp /tp3/tp /tp4/tp /tp5/tp /tp6/tp /tp7/tp /tp8/tp /tp9/tp)

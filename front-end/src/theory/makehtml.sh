@@ -1,3 +1,3 @@
 #!/bin/bash
-touch *.rst
+find . -type f -name "*.rst" -exec touch {} +
 make html
