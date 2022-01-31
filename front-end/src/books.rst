@@ -14,3 +14,5 @@ LINGI2144's Books
 - Black hat python
 - Hacking s3crets
 - Metasploit the penetration tester's guide 
+
+For any student with potential deficiencies in systems/C and assembler, LEPL1503 given by Bonaventure Olivier could help you. Here is the `course <https://sites.uclouvain.be/SystInfo/theorie.html>`_.
