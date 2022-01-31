@@ -12,16 +12,14 @@ Tutorial 0: Initiation
          $json   = "../../_static/config.json";
          $string = file_get_contents($json);
          if ($string === false) {
-            //deal error
-            echo "error json";
+            echo "(error) json content";
          }
          $decoded = json_decode($string, true);
          if ($decoded === null) {
-            echo "error json decoded";
+            echo "(error) json decoded";
          }
-         $visi = (strcmp($decoded["t0"],"1") === 0);
-         $good = (strcmp($decoded["t0s"],"1") === 0);
-
+         $visi = (strcmp($decoded["e0"],"1") === 0);
+         $good = (strcmp($decoded["e0s"],"1") === 0);
          if($visi) {
             header("location: index.php");
             echo '<script type="text/javascript">',
@@ -30,16 +28,10 @@ Tutorial 0: Initiation
             echo "<br><h3 style='text-align: center;'> Still not authorized by the professor  :/ </h3>";
             exit; // prevent further execution
          }
-   ?>
-   <?php
          if($good) {
             //nothing
             echo '<script type="text/javascript">',
                      'hideSolution();',
-                  '</script>';
-         } else {
-            echo '<script type="text/javascript">',
-                     //'$(document).ready(function() { $(".sol-img").toggle(); });',
                   '</script>';
          }
    ?>
@@ -53,7 +45,7 @@ from this `address <https://download.virtualbox.org/virtualbox/6.1.18/Oracle_VM_
 
 Download the Kali VM from this link
 
-.. centered:: https://transvol.sgsi.ucl.ac.be/download.php?id=e51df06f753b8f84
+.. centered:: https://transvol.sgsi.ucl.ac.be/download.php?id=95a7ca7493b9b589
 
 | Once downloaded, click on it VirtualBox will open, just click on the
   “Import” button
