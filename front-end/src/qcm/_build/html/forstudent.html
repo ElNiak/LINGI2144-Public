@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>To the attention of the students &#8212; QCM 2022 documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/my-style.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/jquery-shuffle.js"></script>
+    <script type="text/javascript" src="_static/rst-form.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/script.js"></script>
+
+
+
+
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><span><img src="_static/UCLouvain_Logo+moodle.png"></span>
+          LINGI2144</a>
+        <span class="navbar-text navbar-version pull-left"><b>2022</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="/index.html">Main</a></li>
+                <li><a href="/theory/index.html">Theory</a></li>
+                <li><a href="/exercice/index.html">Tutorial</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container" >
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><a href="https://moodleucl.uclouvain.be/course/view.php?id=12241" target="_blank">
+    <img id="moodle" class="img-fluid rounded-circle" src="https://www.examulator.com/er/icons/moodle_logo.png">
+    <!--
+    TODO change with nonweb image
+    -->
+</a>
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main" >
+      
+  <div class="section" id="to-the-attention-of-the-students">
+<h1>To the attention of the students<a class="headerlink" href="#to-the-attention-of-the-students" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="adding-new-mcq">
+<h2>Adding new MCQ<a class="headerlink" href="#adding-new-mcq" title="Permalink to this headline">¶</a></h2>
+<p>Very simple, imagine you want to create a new question for <code class="docutils literal notranslate"><span class="pre">introduction/introduction.rst</span></code>.
+First you need to know if you want “radio MCQ” (1 solution on all possible choice) or “checkbox MCQ”
+(many solution for all possible choice).</p>
+<p>If you choose checkbox MCQ, here what you should have:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>.. question:: security  <span class="c">&lt;!-- id of the question                 --&gt;</span>
+   :nb_prop: 6          <span class="c">&lt;!-- number of proposition presented    --&gt;</span>
+   :nb_pos: 2           <span class="c">&lt;!-- number of solutions presented (&gt;1) --&gt;</span>
+
+   | Choose the right answer to &quot;Security is ...&quot;
+
+   .. positive:: <span class="c">&lt;!-- solution --&gt;</span>
+
+      - the protection against illegal actions against a society or people.
+      - armed with IP filtering  to avoid data theft for example.
+
+   .. positive:: <span class="c">&lt;!-- solution --&gt;</span>
+
+      - not quantifiable.
+
+   .. negative:: <span class="c">&lt;!-- false proposition --&gt;</span>
+
+      - quantifiable with statistics.
+
+   .. negative:: <span class="c">&lt;!-- false proposition --&gt;</span>
+
+      - protection against illegal actions against a society or people.
+      - about checksums for example to ensure data is safe from failure.
+
+   .. negative:: <span class="c">&lt;!-- false proposition --&gt;</span>
+
+      - protection against fault with unintended consequences.
+      - about checksums for example to ensure data is safe from failure.
+
+   .. negative:: <span class="c">&lt;!-- false proposition --&gt;</span>
+
+      - protection against fault with unintended consequences.
+      - armed with IP filtering  to avoid data theft for example.
+</pre></div>
+</div>
+<p>If you choose radio MCQ, here what you should have:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>.. question:: security  <span class="c">&lt;!-- id of the question                 --&gt;</span>
+   :nb_prop: 6          <span class="c">&lt;!-- number of proposition presented    --&gt;</span>
+   :nb_pos: 1           <span class="c">&lt;!-- number of solutions presented (==1)--&gt;</span>
+
+   | Choose the right answer to &quot;Security is ...&quot;
+
+   .. positive:: <span class="c">&lt;!-- solution --&gt;</span>
+
+      - the protection against illegal actions against a society or people.
+      - armed with IP filtering  to avoid data theft for example.
+
+   .. positive:: <span class="c">&lt;!-- solution --&gt;</span>
+
+      - not quantifiable.
+
+   .. negative:: <span class="c">&lt;!-- false proposition --&gt;</span>
+
+      - quantifiable with statistics.
+
+   .. negative:: <span class="c">&lt;!-- false proposition --&gt;</span>
+
+      - protection against illegal actions against a society or people.
+      - about checksums for example to ensure data is safe from failure.
+
+   .. negative:: <span class="c">&lt;!-- false proposition --&gt;</span>
+
+      - protection against fault with unintended consequences.
+      - about checksums for example to ensure data is safe from failure.
+
+   .. negative:: <span class="c">&lt;!-- false proposition --&gt;</span>
+
+      - protection against fault with unintended consequences.
+      - armed with IP filtering  to avoid data theft for example.
+</pre></div>
+</div>
+<p>Everything shuffle and compute the result alone thanks to the excellent extension
+made by <a class="reference external" href="https://bitbucket.org/u531355/sphinx-form/src/default/">Lionel Chalet</a>.</p>
+</div>
+<div class="section" id="checker">
+<h2>Verify your answers<a class="headerlink" href="#checker" title="Permalink to this headline">¶</a></h2>
+<div id="results" style="display: none;"></div><button type="submit" class="btn btn-primary" id="submit">Verify</button></div>
+</div>
+
+<script type="text/javascript">var language = "en"; var upload_url = ""; var hash = "913b1796985118a2b0d90cd9c4b60d15"; var title = "To the attention of the students"; var html_title = "QCM 2022 documentation";</script>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a id="up" href="#">
+        <span class="fa fa-chevron-up"></span>
+      </a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+        &copy; Copyright 2022, Legay Axel, Duchene Fabien, Crochet Christophe, Sebastien Strebelle, Thomas Given-Wilson, Schmitz Donatien.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

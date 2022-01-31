@@ -341,7 +341,8 @@ def html_add_content(app, doctree, docname):
 	builder = app.builder
 	if not hasattr(builder, 'format') or builder.format != 'html':
 		return
-	h = hashlib.md5(str(doctree)).hexdigest()
+	print(str(doctree))
+	h = hashlib.md5(str(doctree).encode('utf-8')).hexdigest()
 	title = ''
 	node = doctree
 	for t in doctree.traverse(nodes.title):
@@ -362,13 +363,13 @@ def html_add_content(app, doctree, docname):
 	section += nodes.raw(format='html', text=text)
 	node += section
 	js = nodes.raw(format='html')
-	js += nodes.Text(u'\n<script type="text/javascript">var language = "' + unicode(language) + '";'
-				u' var upload_url = "' + unicode(app.config.mcq_upload_url) + '";'
-				u' var hash = "' + unicode(h) + '"; var title = "' + unicode(title) + '";'
-				u' var html_title = "' + unicode(app.config.html_title) + '";')
+	js += nodes.Text(u'\n<script type="text/javascript">var language = "' + str(language) + '";'
+				u' var upload_url = "' + str(app.config.mcq_upload_url) + '";'
+				u' var hash = "' + str(h) + '"; var title = "' + str(title) + '";'
+				u' var html_title = "' + str(app.config.html_title) + '";')
 	if app.config.mcq_inginious_url and task_id:
-				js += nodes.Text(u' var task_id = "' + unicode(task_id) + '"; var inginious_url = "' + unicode(app.config.mcq_inginious_url) + '";')
-	js += nodes.Text(u'</script>');
+				js += nodes.Text(u' var task_id = "' + str(task_id) + '"; var inginious_url = "' + str(app.config.mcq_inginious_url) + '";')
+	js += nodes.Text(u'</script>')
 	doctree += js
 
 def latex_add_content(app, doctree, docname):

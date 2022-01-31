@@ -1,0 +1,189 @@
+Shellcode
+*********
+
+| This objective now is understand where to find shellcode and how to
+  produce them. "Once you know how to write your own shellcodes, your
+  exploits are only limited by your imagination". [1]_
+
+| **Shell code are not program , but self sufficient piece of
+   code (in the code segment and nothing else). Indeed, they shall be
+   runned without context. Programming shellcode is an art, here we will
+   mainly focus on using them.**
+
+**Properties**:
+
+#. **Shellcode are selfcontained pieces of code**: only code segment is
+   available
+
+#. **Shellcode should not be "stopped" by bad characters**
+
+   -  ``0x00`` : null (``\0``)
+
+   -  ``0x09`` : tab (``\t``)
+
+   -  ``0x0a`` : new line (``\n``)
+
+   -  ``0x0d`` : return (``\r``)
+
+   -  ``0xff`` : form feed (``\f``)
+
+#. **Anti virus should not be able to detect them**: Most of those tools
+   work via static analysis : "find a known pattern"
+
+   -  **Cypher your shellcode** : Encoding permits to evade anti virus
+      (and various detection tools and in addition, one way to avoid bad
+      characters is to use encodings. It can be applied in rounds but it
+      has a cost : *it increases the size of the shellcode* (hence can
+      be detected)
+
+.. [1]
+   *Penetration Testing with Shellcode*
+
+Hand made shellcode
+-------------------
+
+#. **High level language such as C**: Offers portability,standard
+   libraries.
+
+#. **Assembly language**: Specific to an architecture (because of the size of instructions), no standard
+   library. Different architectures lead to different shellcodes since
+   the size operation change even if the objective is the same. On a
+   same architecture, you may still have differences because of
+   executable file format (The Portable Executable (PE) format is a file
+   format for executables, object code, DLLs and others used in 32-bit
+   and 64-bit versions of Windows operating systems and ELF is on Linux
+   and most other versions of Unix).
+
+If we need specific shellcode since the one we need does not exist or
+may not exist for the target architecture or even for the IP address
+targeted.
+
+Extract shellcode from binary
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use the following command:
+
+.. literalinclude:: dump.sh
+   :language: bash
+
+If you use the resulting shell code, you’ll get a segfault **due to bad
+char**.
+
+Bad characters
+~~~~~~~~~~~~~~
+
+Here is how we can deal with bad characters:
+
+#. Instruction ``b8 01 00 00 00`` (``mov eax,0x1``) contains bad char
+
+   -  | **Solution**: ``mov al, 0x1``
+      | We have different register size : ``rdi`` :math:`=` 64 bits,
+        ``edi`` :math:`=` 32 bits and ``al`` :math:`=` 1 bytes. This
+        will truncated the bad character.
+
+#. Instruction ``bf 01 00 00 00`` (``mov edi,0x1``) contains bad char
+
+   -  **Solution**: ``xor rdi,rdi`` (``xor a,a`` sets ``a`` to 0)
+
+   -  ``add rdi,1``
+
+Not text section
+~~~~~~~~~~~~~~~~
+
+Sequence like the following is problematic shell code must be self
+contained:
+
+.. literalinclude:: nottext.sh
+   :language: bash
+
+**Solution**: use the relative address principle. ``Jump`` is necessary
+to avoid executing data in ``.text`` section! Latter, we will see an
+alternative with a stack push.
+
+.. literalinclude:: text.sh
+   :language: bash
+
+``execve`` calling convention
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. centered:: ``int execve(const char *path, char *const argv[], char *const envp[]);``
+
+Replace current shell with another one (its first parameter). In
+assembly:
+
+- **argument 1** : new shell (``/bin/sh``)
+
+- | **argument 2**: arguments called with the new shell
+  | (by convention, first position is shell itself, followed by 0)
+
+- **argument 3**: pointers to environment variables for new shell(here
+  nothing).
+
+Calling convention: [2]_
+
+-  Function called via int ``0x80`` (interruption)
+
+-  Its call number is pushed in ``EAX``, it is 11
+
+-  Arguments are placed in ``EBX``, ``ECX``, ``EDX`` (in this order)
+
+   -  We have 3 arguments for 3 registers
+
+   -  The idea is to write everything in ``EBX``
+
+      -  Start with ``/bin/shXAAAABBBB`` (segment data)
+
+      -  Make sure that 0 is viewed as null terminating string.
+
+      -  Then replace ``aaaa`` by address of ``EBX`` (hence we consider
+         0 arguments and put back the shell address)
+
+      -  The replace ``bbbb`` by ``0000`` (to not introduce environment
+         variables)
+
+      -  Then load addresses from ``EBX, EBX+8`` (in ``ECX``) and
+         ``EBX+12`` (in ``EDX``)
+
+
+.. literalinclude:: exceve.sh
+   :language: bash
+
+This shellcode can still be executed, but cannot be used as a payload
+
+.. literalinclude:: nasm.sh
+   :language: bash
+
+-  **Observation**: shellcode has a ``.data`` section
+
+Remove ``.data`` section
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: data.sh
+   :language: bash
+
+-  **Observation**: Sequences of 0 are introduce by ``mov eax,0x0`` which is equivalent to ``xor eax, eax``
+
+-  **Observation**: Sequences of 0 are introduce by ``mov eax,11``
+
+   -  ``mov eax,0xb`` is equivalent to ``66 B8 0C 00 00 00 00``
+
+   -  32 bits registers, 11 is represented with ``00 00 00 00 0C``
+
+   -  ``mov eax,11`` becomes ``mov al,11``
+
+Polymorphic shellcode
+~~~~~~~~~~~~~~~~~~~~~
+
+What can easily be detected in our shellcode? String. Shellcode should
+be cyphered, this is the **auto-decoding** shell code principle.
+
+-  **Property**: :math:`A \oplus B \oplus B = A`
+
+Auto decoding shellcode program read cyphered shellcode, xor it with the
+key and output the original shell code. It can be much more
+sophisticated.
+
+.. [2]
+   https://www.bases-hacking.org/coding_shellcode.html
+
+.. include:: tools.rst

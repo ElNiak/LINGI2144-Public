@@ -1,0 +1,71 @@
+Dedicated tools
+---------------
+
+There are many tools and web sites that propose shellcodes [3]_, all
+payloads available on dedicated tools have been manually written and of
+course tools such as Metasploit.
+
+Metasploit framework
+~~~~~~~~~~~~~~~~~~~~
+
+Existing tools for shellcode production can be find in ``Metasploit``
+and ``msfvenom``. The Metasploit Project is a huge security project that
+provides a wide range of payloads and exploits for various platform.
+There is many other tools such as ``webfuzzing``, ``torch`` and many
+other.
+
+
+``msfvenom``
+^^^^^^^^^^^^
+
+``msfvenom`` is one of Metasploit’stools, it is the merge of
+``msfpayload`` and ``msfencod``. It offers more than 400 payloads
+(``msfvenom -list p``) [4]_
+
+.. literalinclude:: msf.sh
+   :language: bash
+
+Bind/Reverse shellcode
+~~~~~~~~~~~~~~~~~~~~~~
+
+One main step of an attack is to take control of the vulnerable system
+and then open a backdoor to start **amplification** of the attack. A
+**backdoor** can be:
+
+#. A port opened and listening on the vulnerable system: **a bind
+   shell**
+
+..  image:: image/19.PNG
+    :scale: 50%
+    :align: center
+
+2. A connection from the vulnerable system to the attacker: **a reverse
+   shell**, in most cases, one goes for reverse shell.
+
+..  image:: image/20.PNG
+    :scale: 50%
+    :align: center
+
+``Netcat`` is a tool to establish a connection between two entities
+
+-  On server : ``nc -lvp 444``
+
+-  Client listen : ``nc address 444``
+
+Generate an executable ELF file for a reverse shell code on localhost
+port 4444. On server side:
+
+.. literalinclude:: reverse.sh
+   :language: bash
+
+.. warning:: **Client must start listening before shell is started, else “segmentation".**
+
+
+.. [3]
+   http://shell-storm.org/shellcode/
+
+.. [4]
+   https://subscription.packtpub.com/book/networking_and_servers/9781788473736/5/ch05lvl1sec40/generating-shellcode-using-metasploit
+
+
+

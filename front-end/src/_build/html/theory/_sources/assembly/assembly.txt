@@ -1,0 +1,55 @@
+Assembly/Debugger
+*****************
+
+Assembly
+--------
+
+| **Low level language** that present machine language in a form that is
+  readable by a human where languages such as C or C++ are **high level
+  languages**. Languages such as Java are **interpreted languages**.
+
+| The exact syntax of the assembly **depends on the architecture**:
+
+-  INTEL for X86 based processors (mostly linux and windows)
+
+   ``<OPERATION> <DST>, <SRC>``
+
+-  AT&T for UNIX
+
+   ``<OPERATION> %<SRC>, %<DST>``
+
+X86 assembly language
+~~~~~~~~~~~~~~~~~~~~~
+
+Several types of instructions :
+
+#. **Transfer between memory/registers and registers/memory**
+
+   -  ``MOV [EBP+9],value``: puts ``value`` at address pointed by
+      ``EBP+9``
+
+   -  ``LEA EAX, [EBP+9]``: load the address of ``EBP+9`` into ``EAX``
+
+   -  ``PUSH value``: add value on top of stack
+
+   -  ``POP dst``: remove top value from stack and save it in dest
+
+#. **Computation** (``ADD``, ``NEGL``,...)
+
+#. **Jump** (``JUMP``, ``JGE``,...) and **Test** (Test ``CMP`` and
+   corresponding flags)
+
+   .. literalinclude:: assem.c
+      :language: c
+
+#. **Many more**
+
+   -  ``NOP``: does nothing, equivalent to ``0x90``
+
+
+**Endianness convention**: Use the little endian convention
+
+-  Address ``0xffcefade`` is represented with ``\xde\xfa\xce\xff``
+
+
+.. include:: debugger.rst

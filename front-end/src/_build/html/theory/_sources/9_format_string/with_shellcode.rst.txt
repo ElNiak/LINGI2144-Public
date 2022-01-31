@@ -1,0 +1,90 @@
+Shellcode and Format String
+---------------------------
+
+| Stack cannot be smatched (but one can still write on the stack!).
+  However, one can rewrite content of addresses stored in the stack with
+  ``%n``. The principle is very similar to the one used to evade a
+  canary. Let us write address of saved EIP in an appropriate place, so
+  that we can modify its content. [1]_ [2]_
+
+| Use GDB to find:
+
+-  saved EIP
+
+-  beginning of buffer
+
+-  Write A1 at beginning of buffer (i.e., A2), then use several ``%x``
+   to reach the beginning of the buffer, i.e., A2, with ``printf`` and
+   ``%n`` to write some interesting address A3, which is inside the
+   buffer (to be expended, but likely to be a shellcode)
+
+**Observations:**
+
+#. The position of the buffer in terms of arguments (``%x``) can be
+   obtained
+
+#. Writing A3 requires to write several chars, indeed ``%n`` only counts
+   number of chars that are printed before reaching it!
+
+**How to:**
+
+#. Prepare a shell code contained in a buffer, just as before
+
+#. Write A1, address where saved EIP is saved at beginning of buffer,
+   i.e. at address A2
+
+#. Then add some NOPS in the buffer and the shell code.
+
+#. Then print several characteres with ``%n`` to write an adress A3 in
+   NOPS on A1 (preceded by # of ``%x`` to reach the buffer)
+
+#. The address in NOPS thus replaces the one of saved EIP
+
+Assume that 5 times ``%x`` are enough to print beginning of buffer.
+Position of beginning of arguments in terms of convention calls
+:math:`=` 5 argument.
+
+-  | \|NOPS\| :math:`+` \|Shellcode\| :math:`+` \|Plenty of arguments\|
+     :math:`+` \|%Xd\| :math:`=` A3
+   | So one must chose X adequately. (not sure of the representation)
+
+..  image:: image/27.PNG
+    :scale: 80%
+    :align: center
+
+
+Difficulty
+~~~~~~~~~~
+
+| We said to use ``%n`` to write an address in NOPS on A1 (``%n`` counts
+  the number of characters printed before ``%n``) We thus need to
+  display a lot of characters by using ``$Xd``. ``0xbffffe48`` (A3)
+  corresponds to ``3221225032`` char in decimal. It may be the case that
+  displaying ``0xbffffe48`` chars is not possible (do not forget it is
+  an argument!) The argument would be too large.
+
+| **Solution**: how to write ``0xbffffe48`` (A3) in ``0xbffffcec`` (A1)
+
+-  Use ``%hn``, it is the same as ``%n`` except that it writes 2 bytes
+   instead of 4
+
+-  Split ``0xbffffcec`` into ``0xbffffcee`` and ``bffffcec``
+
+-  The objective will be to write ``fe48`` (65096) in\ ``bffffcec`` and
+   ``bfff`` (49151) in ``bffffcee``
+
+-  | The form of the buffer is now:
+   | ``bffffcee + bffffcec + NOPS + shellcode + %Xd + %5$hn + %Yd + 6$hn``
+
+-  | Assume a shell code of size 39, and 34 NOPS
+   | Values for X and Y:
+
+   -  :math:`X= 49151 - NOPS - SHELLCODE = 49070`
+
+   -  :math:`Y = 65096 - X - NOPS - SHELLCODE = 15945`
+
+.. [1]
+   https://github.com/JonathanSalwan/ROPgadget
+
+.. [2]
+   https://www.exploit-db.com/docs/english/28553-linux-classic-return-to-libc-&-return-to-libc-chaining-tutorial.pdf
